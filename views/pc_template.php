@@ -20,6 +20,18 @@ class PCTemplate extends Template {
                         document.getElementsByTagName("button")[0].setAttribute("onclick", "LoadMoreFromIndexPage("+id+")");
                     }
                 }
+
+                function LoadMoreFromCategory(from, category) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('get', '/controllers/getMorePostsByCategory.php?from='+from+'&category='+category)
+                    xhr.send();
+                    xhr.onload = function() {
+                        document.getElementById("news").innerHTML += xhr.responseText;
+                        let newsCount = document.getElementsByTagName("h3").length;
+                        let id = document.getElementsByTagName("h3")[newsCount-1].getAttribute("data-id");
+                        document.getElementsByTagName("button")[0].setAttribute("onclick", "LoadMoreFromCategory("+id+",'"+category+"')");
+                    }
+                }
             </script>
         </head>
         <body>
