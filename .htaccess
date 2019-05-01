@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule /kek /controllers/index.php
+RewriteRule ^$ /controllers/index.php
