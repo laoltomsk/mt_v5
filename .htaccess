@@ -1,2 +1,3 @@
 RewriteEngine On
-RewriteRule ^$ /controllers/index.php
+RewriteRule ^$ /controllers/getPosts.php
+# RewriteRule ^/getMore?from=(\d+)$ /controllers/getMorePosts.php?from=$1
