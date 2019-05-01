@@ -5,6 +5,9 @@ class NewsModel extends Model {
     public function getData($db, $category = '', $tag = '', $from = infinity, $offset = 0, $onpage = newsOnPage) {
         $news = array();
 
+        $category = mysqli_real_escape_string($db, $category);
+        $tag = mysqli_real_escape_string($db, $tag);
+
         $categoryFilter = '';
         if ($category !== '') {
             $categoryFilter = "AND `tb_uri`.`category` = '$category'";
