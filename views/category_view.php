@@ -13,6 +13,7 @@ class CategoryView extends View {
                 <p><?php print $data['news'][$i]['lead'] ?></p>
                 <img src="<?php print $data['news'][$i]['pic'] ?>">
                 <p>Views: <?php print $data['news'][$i]['views'] ?></p>
+                <a href="/post_<?php print $data['news'][$i]['id'] ?>.html">Читать</a>
                 <br><br>
                 <?php
             }
