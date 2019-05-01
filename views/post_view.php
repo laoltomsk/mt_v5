@@ -16,7 +16,7 @@ class PostView extends View {
             <p>(C) <?php echo $data['post']['author'] ?></p>
             <p>Теги:
             <?php for ($i = 0; $i < count($data['post']['tags']); $i++) {
-                echo $data['post']['tags'][$i];
+                echo "<a href='/".$data['post']['category']."/".$data['post']['tags'][$i]."'>".$data['post']['tags'][$i]."</a>";
                 if ($i != count($data['post']['tags'])-1) {
                     echo ", ";
                 };
