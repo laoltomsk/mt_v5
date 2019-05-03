@@ -10,3 +10,5 @@ RewriteRule ^postnew.html$ /controllers/getPostCreatePage.php
 RewriteRule ^postedit_(\d+).html$ /controllers/getPostEditPage.php?id=$1
 RewriteRule ^postdelete_(\d+).html$ /controllers/deletePost.php?id=$1
 RewriteRule ^sendtip.html$ /controllers/getSendTipPage.php
+RewriteRule ^tipview.html$ /controllers/getTips.php
+RewriteRule ^tipdelete_(\d+).html$ /controllers/deleteTip.php?id=$1
