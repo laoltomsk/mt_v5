@@ -44,6 +44,12 @@ class PCTemplate extends Template {
                         document.getElementsByTagName("button")[0].setAttribute("onclick", "LoadMoreFromCategory("+id+",'"+category+"'&tag='"+tag+"')");
                     }
                 }
+
+                function AddView(id) {
+                    let xhr = new XMLHttpRequest();
+                    xhr.open('get', '/controllers/addViewToPost.php?id='+id);
+                    xhr.send();
+                }
             </script>
         </head>
         <body>
@@ -55,6 +61,7 @@ class PCTemplate extends Template {
     public function getFooter()
     {
         ?>
+        <p><a href="/sendtip.html">Прислать новость</a></p>
         <p><b>Mobiltelefon.ru, 2019</b></p>
         </body>
         </html>
