@@ -1,5 +1,6 @@
 RewriteEngine On
 RewriteRule ^$ /controllers/getPosts.php
+RewriteRule ^contents_all_(\d+).html$ /controllers/getSiteMap.php?page=$1
 RewriteRule ^contents_([^_]+)_(\d+).html$ /controllers/getPostsByCategory.php?category=$1&page=$2
 RewriteRule ^([^/]+)/([^.]+)$ /controllers/getPostsByTag.php?category=$1&tag=$2
 RewriteRule ^post_(\d+).html$ /controllers/getPost.php?id=$1
@@ -7,3 +8,5 @@ RewriteRule ^login.html$ /controllers/getLoginPage.php
 RewriteRule ^logout.html$ /controllers/Logout.php
 RewriteRule ^postnew.html$ /controllers/getPostCreatePage.php
 RewriteRule ^postedit_(\d+).html$ /controllers/getPostEditPage.php?id=$1
+RewriteRule ^postdelete_(\d+).html$ /controllers/deletePost.php?id=$1
+RewriteRule ^sendtip.html$ /controllers/getSendTipPage.php

@@ -40,4 +40,24 @@ class NewsModel extends Model {
         }
         return $news;
     }
+
+    public function getNumberOfData($db, $category = '', $tag = '') {
+        $category = mysqli_real_escape_string($db, $category);
+        $tag = mysqli_real_escape_string($db, $tag);
+
+        $categoryFilter = '';
+        if ($category !== '') {
+            $categoryFilter = "WHERE `tb_uri`.`category` = '$category'";
+        }
+        if ($tag === '') {
+            $queryResults = $db->query("SELECT COUNT(1) FROM `tb_uri`".$categoryFilter);
+        }
+        else {
+            $queryResults = $db->query("SELECT COUNT(1) FROM `tb_uri`
+              INNER JOIN `tb_pages` ON `tb_uri`.`id` = `tb_pages`.`uri_id`
+              INNER JOIN `tb_tag` ON `tb_pages`.`tag_id` = `tb_tag`.`id` AND `tb_tag`.`name` = '{$tag}'
+              ".$categoryFilter);
+        }
+        return $queryResults->fetch_array()[0];
+    }
 }

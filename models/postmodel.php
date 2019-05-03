@@ -62,7 +62,7 @@ class PostModel extends Model {
                 $dbUriId = $db->insert_id;
 
                 $db->query("INSERT INTO `tb_pages_viewed` (`uri`, `date_reg`, `date_upd`, `cnt_view`)
-              VALUES ('$id', '$dateReg', '$dateReg', 0)");
+                  VALUES ('$id', '$dateReg', '$dateReg', 0)");
 
                 $tags = explode(", ", $tags);
                 for ($i = 0; $i < count($tags); $i++) {
@@ -80,7 +80,7 @@ class PostModel extends Model {
                 }
             } else {
                 $timeString = date("Y-m-d H:i:s", $id);
-                $db->query("UPDATE `tb_uri` SET `title` = '$title', `category` = '$category', `text` = '$text'
+                $db->query("UPDATE `tb_uri` SET `title` = '$title', `category` = '$category', `text` = '$text',
                   `lead` = '$lead', `pic` = '$pic', `author` = '$author', `src` = '$src' WHERE `uri` = $id");
                 $dbUriId = $db->insert_id;
 
@@ -102,5 +102,30 @@ class PostModel extends Model {
             }
             return $id;
         }
+        return false;
+    }
+
+    public function deleteData($db, $id = 0)
+    {
+        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+            $id = $id * 1;
+
+            $queryResults = $db->query("SELECT * FROM `tb_uri` WHERE `uri` = '$id'");
+            if ($queryResult = $queryResults->fetch_array()) {
+                $dbUriId = $queryResult['id'];
+                $db->query("DELETE FROM `tb_pages` WHERE `uri_id` = $dbUriId");
+                $db->query("DELETE FROM `tb_uri` WHERE `uri` = '$id'");
+                $db->query("DELETE FROM `tb_pages_viewed` WHERE `uri` = '$id'");
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public function addView($db, $id) {
+        $id = $id * 1;
+
+        $db->query("UPDATE `tb_pages_viewed` SET `cnt_view` = `cnt_view`+1 WHERE `uri` = '$id'");
     }
 }

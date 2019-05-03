@@ -22,7 +22,9 @@ class PostView extends View {
                 };
             } ?>
             </p>
-            <p></p>
+        <script>
+            AddView(<?php echo $data['post']['id'] ?>);
+        </script>
         <?php
         $this->template->getFooter();
     }
