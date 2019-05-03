@@ -15,6 +15,6 @@ class TipsView extends View {
             <br><br>
             <?php
         }
-        $this->template->getFooter();
+        $this->template->getFooter(); 
     }
 }
