@@ -5,3 +5,5 @@ RewriteRule ^([^/]+)/([^.]+)$ /controllers/getPostsByTag.php?category=$1&tag=$2
 RewriteRule ^post_(\d+).html$ /controllers/getPost.php?id=$1
 RewriteRule ^login.html$ /controllers/getLoginPage.php
 RewriteRule ^logout.html$ /controllers/Logout.php
+RewriteRule ^postnew.html$ /controllers/getPostCreatePage.php
+RewriteRule ^postedit_(\d+).html$ /controllers/getPostEditPage.php?id=$1

@@ -10,7 +10,7 @@ $isUserExist = $model->getData($db, $_POST['login'], $_POST['password']);
 if ($isUserExist) {
     $_SESSION['user'] = $_POST['login'];
     $_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-    header("Location: /controllers/getPosts.php");
+    header("Location: /");
 } else {
     header("Location: /login.html");
 }
