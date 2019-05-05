@@ -5,7 +5,7 @@ class IndexView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader(siteTitle, siteDescription, '', siteLogo, false);
         ?><div id="news"><?php
             for ($i = 0; $i < count($data['news']); $i++) {
                 ?>

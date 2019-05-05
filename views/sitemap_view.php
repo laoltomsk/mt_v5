@@ -5,7 +5,7 @@ class SiteMapView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader("Mobiltelefon.ru: карта сайта", siteDescription, '', siteLogo, false);
         ?><div id="news"><?php
             for ($i = 0; $i < count($data['news']); $i++) {
                 ?>

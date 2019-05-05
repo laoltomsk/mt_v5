@@ -5,9 +5,8 @@ class PostEditView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
-        ?>
-        <form action="/controllers/editPost.php" method="POST">
+        $this->template->getHeader("Редактирование записи ".$data['post']['title'], $data['post']['lead'], $data['post']['category'], siteLogo, false);
+        ?><form action="/controllers/editPost.php" method="POST">
             <input name="title" placeholder="title" value="<?php echo $data['post']['title'] ?>"><br>
             <textarea name="lead"><?php echo $data['post']['lead'] ?></textarea><br>
             <input name="pic" placeholder="pic" value="<?php echo $data['post']['pic'] ?>"><br>

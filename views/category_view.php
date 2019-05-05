@@ -5,7 +5,7 @@ class CategoryView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader("Мобильный телефон: ".getRussianCategoryName($data['category']), siteDescription, $data['category'], siteLogo, false);
         ?><div id="news"><?php
             for ($i = 0; $i < count($data['news']); $i++) {
                 ?>
