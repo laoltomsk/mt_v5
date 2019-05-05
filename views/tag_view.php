@@ -5,9 +5,9 @@ class TagView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader("Mobiltelefon.ru: ".getRussianCategoryName($data['category'])." по тегу ".$data['tag'], siteDescription, $data['category'], siteLogo, false);
         ?>
-        <h2>Материалы по тегу <?php echo $data['tag'] ?></h2>
+        <h2><?php echo getRussianCategoryName($data['category'])." по тегу ".$data['tag']; ?></h2>
         <div id="news"><?php
             for ($i = 0; $i < count($data['news']); $i++) {
                 ?>

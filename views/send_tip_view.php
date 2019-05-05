@@ -5,7 +5,7 @@ class SendTipView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader("Mobiltelefon.ru: прислать новость", siteDescription, '', siteLogo, false);
         ?><h2>Прислать новость</h2>
             <form action="/controllers/sendTip.php" method="POST">
                 <textarea name="tip">

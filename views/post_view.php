@@ -5,7 +5,7 @@ class PostView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader($data['post']['title'], $data['post']['lead'], $data['post']['category'], $data['post']['pic'], true);
         ?><div id="post">
 
             <h2><?php echo $data['post']['title']?></h2>

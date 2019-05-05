@@ -5,7 +5,7 @@ class LoginView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader("Mobiltelefon.ru: вход", siteDescription, '', siteLogo, false);
         ?><div id="news">
             <form action="/controllers/login.php" method="POST">
                 <input name="login"><br>

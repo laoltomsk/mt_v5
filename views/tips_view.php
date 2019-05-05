@@ -5,7 +5,7 @@ class TipsView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader();
+        $this->template->getHeader("Mobiltelefon.ru: присланные новости", siteDescription, '', siteLogo, false);
         ?><?php
         for ($i = 0; $i < count($data['tips']); $i++) {
             ?>

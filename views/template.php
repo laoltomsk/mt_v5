@@ -1,7 +1,7 @@
 <?php
 
 class Template {
-    public function getHeader() {
+    public function getHeader($title, $description, $category, $pic, $isArticle) {
 
     }
 
