@@ -82,6 +82,7 @@ class PostModel extends Model {
                 $timeString = date("Y-m-d H:i:s", $id);
                 $db->query("UPDATE `tb_uri` SET `title` = '$title', `category` = '$category', `text` = '$text',
                   `lead` = '$lead', `pic` = '$pic', `author` = '$author', `src` = '$src' WHERE `uri` = $id");
+                if ($db->affected_rows == 0) return false;
                 $dbUriId = $db->insert_id;
 
                 $tags = explode(", ", $tags);

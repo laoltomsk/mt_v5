@@ -14,6 +14,6 @@ if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR'
     $view->show($data);
 }
 else {
-    header("Location: /");
+    header("Location: /error404");
 }
 ?>

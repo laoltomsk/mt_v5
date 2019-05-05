@@ -9,6 +9,14 @@ if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR'
     $newPostId = $model->setData($db, $_POST['title'], $_POST['category'], $_POST['text'], $_POST['lead'],
         $_POST['pic'], $_POST['author'], $_POST['src'], $_POST['tags'], $_POST['id']);
 
-    header("Location: /post_".$newPostId.".html");
+    if ($newPostId) {
+        header("Location: /post_".$newPostId.".html");
+    }
+    else {
+        header("Location: /error404");
+    }
+}
+else {
+    header("Location: /error404");
 }
 ?>

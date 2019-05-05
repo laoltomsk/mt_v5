@@ -20,5 +20,10 @@ if ($_GET['category'] === "obzor") {
 $data['news'] = $model->getData($db, $_GET['category'], '', infinity, $_GET['page'] * newsOnPage);
 $data['category'] = $_GET['category'];
 
-$view->show($data);
+if ($data['news']) {
+    $view->show($data);
+}
+else {
+    header("Location: /error404");
+}
 ?>
