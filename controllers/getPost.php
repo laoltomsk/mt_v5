@@ -9,6 +9,10 @@ $view = new PostView();
 
 $data = array();
 $data['post'] = $model->getData($db, $_GET['id']);
-
-$view->show($data);
+if ($data['post']) {
+    $view->show($data);
+}
+else {
+    header("Location: /error404");
+}
 ?>

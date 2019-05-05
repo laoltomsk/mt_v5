@@ -25,5 +25,10 @@ $data['news'] = $model->getData($db, $_GET['category'], $_GET['tag'], infinity, 
 $data['category'] = $_GET['category'];
 $data['tag'] = $_GET['tag'];
 
-$view->show($data);
+if ($data['news']) {
+    $view->show($data);
+}
+else {
+    header("Location: /error404");
+}
 ?>

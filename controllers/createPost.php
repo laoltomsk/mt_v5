@@ -11,4 +11,7 @@ if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR'
 
     header("Location: /post_".$newPostId.".html");
 }
+else {
+    header("Location: /error404");
+}
 ?>

@@ -12,10 +12,15 @@ if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR'
     $data = array();
     $data['post'] = $model->getData($db, $_GET['id']);
 
-    $view->show($data);
+    if ($data['post']) {
+        $view->show($data);
+    }
+    else {
+        header("Location: /error404");
+    }
 }
 else {
-    header("Location: /");
+    header("Location: /error404");
 }
 
 ?>
