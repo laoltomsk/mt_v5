@@ -1,5 +1,6 @@
 RewriteEngine On
 RewriteRule ^$ /controllers/getPosts.php
+RewriteRule ^index.php$ /controllers/getPosts.php
 RewriteRule ^contents_all_(\d+).html$ /controllers/getSiteMap.php?page=$1
 RewriteRule ^contents_([^_]+)_(\d+).html$ /controllers/getPostsByCategory.php?category=$1&page=$2
 RewriteRule ^([^/]+)/([^.]+)$ /controllers/getPostsByTag.php?category=$1&tag=$2

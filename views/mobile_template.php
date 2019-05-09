@@ -8,7 +8,7 @@ class MobileTemplate extends Template {
         <html lang="ru">
         <head>
             <title><?php echo $title ?></title>
-
+            <!--lots of code by Gleb Panteleev-->
             <meta charset="UTF-8">
             <meta property="og:title" content="<?php echo $title ?>"/>
             <meta property="og:image" content="<?php echo $pic ?>" />
@@ -65,49 +65,7 @@ class MobileTemplate extends Template {
             <script src="/assets/mobile/ldo.js?t=18"></script>
             <title>Мобильный телефон: новости и обзоры</title>
 
-            <script> //находится здесь временно, до этапа вёрстки
-                function LoadMoreFromIndexPage(from) {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open('get', '/controllers/getMorePosts.php?from='+from);
-                    xhr.send();
-                    xhr.onload = function() {
-                        document.getElementById("news").innerHTML += xhr.responseText;
-                        let newsCount = document.getElementsByTagName("h3").length;
-                        let id = document.getElementsByTagName("h3")[newsCount-1].getAttribute("data-id");
-                        document.getElementsByTagName("button")[0].setAttribute("onclick", "LoadMoreFromIndexPage("+id+")");
-                    }
-                }
-
-                function LoadMoreFromCategory(from, category) {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open('get', '/controllers/getMorePostsByCategory.php?from='+from+'&category='+category);
-                    xhr.send();
-                    xhr.onload = function() {
-                        document.getElementById("news").innerHTML += xhr.responseText;
-                        let newsCount = document.getElementsByTagName("h3").length;
-                        let id = document.getElementsByTagName("h3")[newsCount-1].getAttribute("data-id");
-                        document.getElementsByTagName("button")[0].setAttribute("onclick", "LoadMoreFromCategory("+id+",'"+category+"')");
-                    }
-                }
-
-                function LoadMoreByTag(from, category, tag) {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open('get', '/controllers/getMorePostsByTag.php?from='+from+'&category='+category+'&tag='+tag);
-                    xhr.send();
-                    xhr.onload = function() {
-                        document.getElementById("news").innerHTML += xhr.responseText;
-                        let newsCount = document.getElementsByTagName("h3").length;
-                        let id = document.getElementsByTagName("h3")[newsCount-1].getAttribute("data-id");
-                        document.getElementsByTagName("button")[0].setAttribute("onclick", "LoadMoreFromCategory("+id+",'"+category+"'&tag='"+tag+"')");
-                    }
-                }
-
-                function AddView(id) {
-                    let xhr = new XMLHttpRequest();
-                    xhr.open('get', '/controllers/addViewToPost.php?id='+id);
-                    xhr.send();
-                }
-            </script>
+            <script src="/scripts/loadMoreScripts.js"></script>
         </head>
         <body>
 		    <div id="main-wrapper">
@@ -135,31 +93,6 @@ class MobileTemplate extends Template {
                     <p id="footer_nav"><a rel="nofollow" href="/google-search.html?cx=partner-pub-6942085025091392:8495246713&cof=FORID%3A11&ie=windows-1251&q=&sa=%CF%EE%E8%F1%EA"><img src="/assets/mobile/e.gif" class="nogalleryimg" alt="Поиск" title="Поиск">Поиск&nbsp;</a></p>
                 </nav>
                 <div class="main_content">
-			        <div class="stats">
-					    <!-- begin of Top100 code -->
-                        <script id="top100Counter" type="text/javascript" src="https://counter.rambler.ru/top100.jcn?1460845"></script>
-                        <noscript>
-                            <img src="https://counter.rambler.ru/top100.cnt?1460845" alt="" width="1" height="1" border="0" />
-                        </noscript>
-                        <!-- end of Top100 code -->
-
-                        <script>
-                            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-                            ga('create', 'UA-42816367-1', 'auto');
-                            ga('send', 'pageview');
-                        </script>
-
-                        <!--LiveInternet counter--><script type="text/javascript"><!--
-                        new Image().src = "https://counter.yadro.ru/hit?r"+
-                        escape(document.referrer)+((typeof(screen)=="undefined")?"":
-                        ";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
-                        screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
-                        ";"+Math.random();//--></script><!--/LiveInternet-->
-			        </div>
 			        <a href="http://ad.adriver.ru/cgi-bin/click.cgi?sid=1&bt=2&ad=676844&pid=2884935&bid=6088799&bn=6088799&rnd=1990748742" target="_blank" class="gr-bn">
                         <div class="gr-bn-cell">
                             <div class="gr-bn-content">
@@ -173,23 +106,20 @@ class MobileTemplate extends Template {
     public function getFooter()
     {
         ?>
-
-
-        </div>
-        <div class="appendix"></div>
-        <footer id="footer_mob_mt">
-            <p>
-                <!-- noindex -->
-                <form class="form_pc" action="./" method="post">
-                    <input type="hidden" name="layoutType" value="classic" />
-                    <button type="submit">Полная версия</button>
-                </form>
-                <!--/ noindex -->
-            </p>
-            <p class="cpy">&copy; Mobiltelefon.ru, 2006 - 2018</p>
-        </footer>
-        </div>
-
+                </div>
+                <div class="appendix"></div>
+                <footer id="footer_mob_mt">
+                    <p>
+                        <!-- noindex -->
+                        <form class="form_pc" action="./" method="post">
+                            <input type="hidden" name="layoutType" value="classic" />
+                            <button type="submit">Полная версия</button>
+                        </form>
+                        <!--/ noindex -->
+                    </p>
+                    <p class="cpy">&copy; Mobiltelefon.ru, 2006 - 2018</p>
+                </footer>
+            </div>
         <script type="text/javascript">
             <!--//<![CDATA[
             chk_ncs(true);
