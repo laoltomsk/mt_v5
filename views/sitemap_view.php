@@ -17,7 +17,7 @@ class SiteMapView extends View {
             ?>
         </div>
         <?php
-        $from = max($data['page']-5, 0); $to = min($from+10, $data['numberOfPages']);
+        $from = max($data['page']-5, 0); $to = min($from+10, $data['numberOfPages']-1);
         for ($i = $from; $i < $to; $i++) {
             if ($i != $data['page']) {
                 echo "<a href='/contents_all_".$i.".html'>".($i+1)."</a> ";
