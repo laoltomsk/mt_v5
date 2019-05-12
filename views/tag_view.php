@@ -8,7 +8,9 @@ class TagView extends View {
         $this->template->getHeader("Mobiltelefon.ru: ".getRussianCategoryName($data['category'])." по тегу ".$data['tag'], siteDescription, $data['category'], siteLogo, false);
         ?>
         <?php if ($this->template instanceof PCTemplate)
-            print "<h1>".getRussianCategoryName($data['category'])." по тегу ".$data['tag']."</h1>" ?>
+            print "<h1>".getRussianCategoryName($data['category'])." по тегу ".$data['tag']."</h1>";
+        else
+            print "<p class='title'>Результаты поиска по тегу&nbsp; <span class='imit_a_tag' style='background: rgba(".rand(20,225).", ".rand(20,225).", ".rand(20,225).", 1);'>samsung</span> :</p>"; ?>
         <div id="list_news"><?php
             for ($i = 0; $i < count($data['news']); $i++) {
                 $this->template->printNewsCard($data['news'][$i]);
