@@ -65,7 +65,7 @@ class MobileTemplate extends Template {
             <script src="/assets/mobile/ldo.js?t=18"></script>
             <title>Мобильный телефон: новости и обзоры</title>
 
-            <script src="/scripts/loadMoreScripts.js"></script>
+            <script src="/scripts/scripts.js"></script>
         </head>
         <body>
 		    <div id="main-wrapper">

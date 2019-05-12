@@ -39,3 +39,7 @@ function AddView(id) {
     xhr.open('get', '/controllers/addViewToPost.php?id='+id);
     xhr.send();
 }
+
+function Redirect(loc) {
+    document.location.assign(loc);
+}

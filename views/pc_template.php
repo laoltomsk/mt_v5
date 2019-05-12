@@ -48,7 +48,7 @@ class PCTemplate extends Template {
             <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext" rel="stylesheet">
             <link rel="stylesheet" href="/styles/style.css">
 
-            <script src="/scripts/loadMoreScripts.js"></script>
+            <script src="/scripts/scripts.js"></script>
         </head>
         <body>
         <div id="main-wrapper">
@@ -64,30 +64,22 @@ class PCTemplate extends Template {
                 <div class="logo">
                     <a href="/"><img src="/assets/pc/logo.png" alt="mobiltelefon.ru logo"></a>
                 </div>
-                <div class="categories">
-                    <a href="/contents_main_0.html" class="category">Новости</a>
-                    <a href="/contents_obzor_0.html" class="category">Обзоры</a>
-                    <a href="/contents_blog_0.html" class="category">Статьи</a>
-                    <a href="#" class="category inactive">Каталог</a>
-                    <a href="#" class="category inactive">Видео</a>
-                    <a href="#" class="category tag">#mwc2019</a>
-                    <input>
+                <div class="grayline">
+                    <div class="categories">
+                        <a href="/contents_main_0.html" class="category">Новости</a>
+                        <a href="/contents_obzor_0.html" class="category">Обзоры</a>
+                        <a href="/contents_blog_0.html" class="category">Статьи</a>
+                        <a href="#" class="category inactive">Каталог</a>
+                        <a href="#" class="category inactive">Видео</a>
+                        <a href="#" class="category tag">#mwc2019</a>
+                    </div>
+                    <div class="searchfield">
+                        <input>
+                    </div>
                 </div>
             </header>
-        <?php switch ($category) {
-            case "news":
-                ?> <b>Новости</b> --- <a href="/contents_obzor_0.html">Обзоры</a> --- <a href="/contents_blog_0.html">Статьи</a>
-                <?php break;
-            case "reviews":
-                ?> <a href="/contents_main_0.html">Новости</a> --- <b>Обзоры</b> --- <a href="/contents_blog_0.html">Статьи</a>
-                <?php break;
-            case "blog":
-                ?> <a href="/contents_main_0.html">Новости</a> --- <a href="/contents_obzor_0.html">Обзоры</a> --- <b>Статьи</b>
-                <?php break;
-            default:
-                ?> <a href="/contents_main_0.html">Новости</a> --- <a href="/contents_obzor_0.html">Обзоры</a> --- <a href="/contents_blog_0.html">Статьи</a>
-                <?php break;
-        }
+            <div id="main-content">
+        <?php
     }
 
     public function getFooter()
