@@ -47,6 +47,7 @@ class PCTemplate extends Template {
             <link rel="apple-touch-icon-precomposed" href="/assets/pc/apple-touch-icon-precomposed.png">
             <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext" rel="stylesheet">
             <link rel="stylesheet" href="/styles/style.css">
+            <link rel="stylesheet" href="/styles/sitemap_style.css">
 
             <script src="/scripts/scripts.js"></script>
         </head>

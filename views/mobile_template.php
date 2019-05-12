@@ -63,6 +63,7 @@ class MobileTemplate extends Template {
             </script>
             <script src="/assets/mobile/mf_highslide_m___mt_m.js?t=24"></script>
             <script src="/assets/mobile/ldo.js?t=18"></script>
+            <link rel="stylesheet" href="/styles/sitemap_style.css">
             <title>Мобильный телефон: новости и обзоры</title>
 
             <script src="/scripts/scripts.js"></script>
