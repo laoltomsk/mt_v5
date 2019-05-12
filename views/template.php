@@ -8,4 +8,8 @@ class Template {
     public function getFooter() {
 
     }
+
+    public function printNewsCard($news) {
+
+    }
 }

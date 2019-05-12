@@ -145,4 +145,19 @@ class MobileTemplate extends Template {
         </html>
         <?php
     }
+
+    public function printNewsCard($news)
+    {
+        ?>
+        <section data-id="<?php print $news['id'] ?>" class="block_news" onclick="url_loc='https://mobiltelefon.ru/post_<?php print $news['id'] ?>.html'; setTimeout('auto_loc()', 50);">
+            <div class="cell">
+                <div class="mpp" style="background-image: url('<?php print $news['pic'] ?>'); background-size: cover; background-position: center;"><a href="/post_<?php print $news['id'] ?>.html" onclick="url_loc0 = 'https://mobiltelefon.ru/post_<?php print $news['id'] ?>.html';"><img class="config" src="/assets/mobile/e_cmpp.png" alt="" /></a></div>
+            </div>
+            <div class="cell">
+                <h2><a href="/post_<?php print $news['id'] ?>.html" onclick="url_loc0 = 'https://mobiltelefon.ru/post_<?php print $news['id'] ?>.html';"><?php print $news['title'] ?></a></h2>
+                <p class="line2"><?php print getRussianCategoryName($news['category']) ?>&nbsp;|&nbsp;<?php echo date("d.m.Y H:i", $news['id']); ?>&nbsp;|&nbsp;<img class="cnt_viewed_" src="/assets/mobile/beye2.svg" alt="" />&nbsp;<?php print $news['views'] ?>&nbsp;|&nbsp;<a href="/post_<?php print $news['id'] ?>.html#mc-container" class="mc-counter" onclick="url_loc0 = url_loc2='https://mobiltelefon.ru/post_<?php print $news['id'] ?>.html#mc-container'; setTimeout('auto_loc()', 50);"><img class="cnt_commented_" src="/assets/mobile/bcmnt.svg" alt="" />&nbsp;-&nbsp;</a></p>
+            </div>
+        </section>
+        <?php
+    }
 }

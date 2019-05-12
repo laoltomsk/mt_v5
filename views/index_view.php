@@ -44,18 +44,8 @@ class IndexView extends View {
                 <div class='data'><img src='/assets/mobile/e.gif' alt='' /><p> Последние материалы</p></div>
             </div>
             <div id="list_news"><?php
-            for ($i = 0; $i < count($data['news']); $i++) {
-                    ?>
-                    <section data-id="<?php print $data['news'][$i]['id'] ?>" class="block_news" onclick="url_loc='https://mobiltelefon.ru/post_<?php print $data['news'][$i]['id'] ?>.html'; setTimeout('auto_loc()', 50);">
-                        <div class="cell">
-                            <div class="mpp" style="background-image: url('<?php print $data['news'][$i]['pic'] ?>'); background-size: cover; background-position: center;"><a href="/post_<?php print $data['news'][$i]['id'] ?>.html" onclick="url_loc0 = 'https://mobiltelefon.ru/post_<?php print $data['news'][$i]['id'] ?>.html';"><img class="config" src="/assets/mobile/e_cmpp.png" alt="" /></a></div>
-                        </div>
-                        <div class="cell">
-                            <h2><a href="/post_<?php print $data['news'][$i]['id'] ?>.html" onclick="url_loc0 = 'https://mobiltelefon.ru/post_<?php print $data['news'][$i]['id'] ?>.html';"><?php print $data['news'][$i]['title'] ?></a></h2>
-                            <p class="line2"><?php print getRussianCategoryName($data['news'][$i]['category']) ?>&nbsp;|&nbsp;<?php echo date("d.m.Y H:i", $data['news'][$i]['id']); ?>&nbsp;|&nbsp;<img class="cnt_viewed_" src="/assets/mobile/beye2.svg" alt="" />&nbsp;<?php print $data['news'][$i]['views'] ?>&nbsp;|&nbsp;<a href="/post_<?php print $data['news'][$i]['id'] ?>.html#mc-container" class="mc-counter" onclick="url_loc0 = url_loc2='https://mobiltelefon.ru/post_1557337757.html#mc-container'; setTimeout('auto_loc()', 50);"><img class="cnt_commented_" src="/assets/mobile/bcmnt.svg" alt="" />&nbsp;-&nbsp;</a></p>
-                        </div>
-                    </section>
-                    <?php
+                for ($i = 0; $i < count($data['news']); $i++) {
+                    $this->template->printNewsCard($data['news'][$i]);
                 }
             ?>
             </div>
@@ -65,25 +55,25 @@ class IndexView extends View {
             <?php }
             else {
                 ?>
-                <h1 class="top">Топ-материалы</h1>
+                <h1>Топ-материалы</h1>
                 <div class="top_blocks">
                     <div class="top_block" onclick="Redirect('/post_0.html')">
                         <div class="thumbnail">
                             <img src="https://mobiltelefon.ru/photo/may19/10/umidigi_a5_pro_resize.jpg">
                         </div>
-                        <h2 class="title">Новость, обладающая очень длинным и довольно скучным названием, но попавшая в топ</h2>
+                        <h2>Новость, обладающая очень длинным и довольно скучным названием, но попавшая в топ</h2>
                     </div>
                     <div class="top_block" onclick="Redirect('/post_0.html')">
                         <div class="thumbnail">
                             <img src="https://mobiltelefon.ru/photo/may19/10/meizu_16s_v_sinem_cvete_budet_dostupen_na_sleduuschej_nedele_picture2_0_resize.jpg">
                         </div>
-                        <h2 class="title">Новость, обладающая не очень длинным и нескучным названием</h2>
+                        <h2>Новость, обладающая не очень длинным и нескучным названием</h2>
                     </div>
                     <div class="top_block" onclick="Redirect('/post_0.html')">
                         <div class="thumbnail">
                             <img src="https://mobiltelefon.ru/photo/may19/08/anons_sharp_aquos_r3_ekran_na_milliard_cvetov_i_20_mp_videokamera_picture7_0_resize.jpg">
                         </div>
-                        <h2 class="title">Новость с коротким названием</h2>
+                        <h2>Новость с коротким названием</h2>
                     </div>
                     <div class="top_block">
                         <div class="counts">
@@ -102,24 +92,14 @@ class IndexView extends View {
                     </div>
                     <!-- блоки с счётчиками вынесены отдельно, т.к. должны выравниваться по нижнему краю, а без флекса это иначе не сделать -->
                 </div>
-                <h1 class="top">Все материалы</h1>
+                <h1>Все материалы</h1>
                 <div id="list_news"><?php
                     for ($i = 0; $i < count($data['news']); $i++) {
-                        ?>
-                        <section data-id="<?php print $data['news'][$i]['id'] ?>" class="block_news" onclick="Redirect('/post_<?php print $data['news'][$i]['id']?>.html')">
-                            <div class="thumbnail">
-                                <img src="<?php print $data['news'][$i]['pic'] ?>">
-                            </div>
-                            <h2 class="title"><a href="/post_<?php print $data['news'][$i]['id'] ?>.html"><?php print $data['news'][$i]['title'] ?></a></h2>
-                            <div class="counts">
-                                <span class="eye"><-></span> 2345 <span class="clock">Ф</span> 12:34 01.02.1234
-                            </div>
-                            <p><?php print $data['news'][$i]['lead'] ?></p>
-                        </section>
-                        <?php
+                        $this->template->printNewsCard($data['news'][$i]);
                     }
                     ?>
                 </div>
+                <button id="load_more" class="loadMoreButton" onclick="LoadMoreFromIndexPage(<?php echo end($data['news'])['id'] ?>)">Больше материалов</button>
                 <?php
             }
         $this->template->getFooter();

@@ -85,11 +85,54 @@ class PCTemplate extends Template {
     public function getFooter()
     {
         ?>
-        <p><a href="/sendtip.html">Прислать новость</a></p>
-        <p><b>Mobiltelefon.ru, 2019</b></p>
+            </div>
+            <div id="right_column">
+                <a id="sendtip" href="/sendtip.html">Прислать материал</a>
+                <a id="right_banner" href="#">
+                    <img src="https://mobiltelefon.ru/photo/rek/15_banners_260x500.jpg">
+                </a>
+                <h1>Видео</h1>
+                <div class="videoblock" onclick="Redirect('https://youtu.be/I8lkWNgLfmc')">
+                    <div class="thumbnail">
+                        <img src="http://i.ytimg.com/vi/I8lkWNgLfmc/maxresdefault.jpg">
+                    </div>
+                    <h2>Какое-то рандомное видео</h2>
+                </div>
+                <div class="videoblock" onclick="Redirect('https://youtu.be/dqs_W-eAneQ')">
+                    <div class="thumbnail">
+                        <img src="http://i.ytimg.com/vi/dqs_W-eAneQ/maxresdefault.jpg">
+                    </div>
+                    <h2>Видео с длинным названием, которое займёт не одну и не две строчки</h2>
+                </div>
+                <div class="videoblock" onclick="Redirect('https://youtu.be/Bu9qRSMaGsc')">
+                    <div class="thumbnail">
+                        <img src="http://i.ytimg.com/vi/Bu9qRSMaGsc/maxresdefault.jpg">
+                    </div>
+                    <h2>Видос о ксяоми</h2>
+                </div>
+                <a id="subscription" href="https://www.youtube.com/subscription_center?add_user=mobiltelefonru">Подписаться</a>
+                <a id="morevids" href="https://www.youtube.com/user/mobiltelefonru/videos">Больше видео</a>
+            </div>
         </div>
         </body>
         </html>
+        <?php
+    }
+
+    public function printNewsCard($news)
+    {
+        ?>
+        <section data-id="<?php print $news['id'] ?>" class="block_news" onclick="Redirect('/post_<?php print $news['id']?>.html')">
+            <div class="thumbnail">
+                <img src="<?php print $news['pic'] ?>">
+            </div>
+            <h2><a href="/post_<?php print $news['id'] ?>.html"><?php print $news['title'] ?></a></h2>
+            <div class="counts">
+                <span class="eye"><-></span> <?php print $news['views'] ?>
+                <span class="clock">Ф</span> <?php print date("d.m.Y H:i", $news['id']) ?>
+            </div>
+            <p><?php print $news['lead'] ?></p>
+        </section>
         <?php
     }
 }

@@ -19,6 +19,7 @@ $h1size: 36px;
   color: $mttext;
   font-family: "Noto Sans", sans-serif;
   box-sizing: border-box;
+  letter-spacing: -0.5px;
 }
 
 a {
@@ -75,16 +76,16 @@ header {
 
   .logo {
     float: left;
-    width: 252px;
+    width: 244px;
     height: 50px;
   }
 
   .grayline {
     @extend %rounded;
-    size: $textsize;
+    font-size: $textsize;
     font-weight: bold;
-    width: 970px / 1280px * 100%;
-    margin: 0 268px;
+    width: 970px / 1268px * 100%;
+    margin-left: 287px;
     padding: 0 16px;
     height: 50px;
     line-height: 50px;
@@ -109,12 +110,12 @@ header {
 
     .searchfield {
       float: right;
-      max-width: 260px;
+      max-width: 25%;
       padding: 0 20px;
 
       input {
         @extend %rounded;
-        size: $textsize;
+        font-size: $textsize;
         background: none;
         border: none;
         font-weight: bold;
@@ -134,8 +135,11 @@ header {
 #main-content {
   width: 950px / 1268px * 100%;
   margin: 14px;
+  margin-bottom: 72px;
+  display: inline-block;
+  vertical-align: top;
 
-  h1.top {
+  h1 {
     font-size: $h1size;
     margin: 32px 45px;
   }
@@ -164,8 +168,8 @@ header {
         }
       }
 
-      h2.title {
-        size: $titlesize;
+      h2 {
+        font-size: $titlesize;
         margin: 10px 0;
       }
 
@@ -195,9 +199,9 @@ header {
         }
       }
 
-      h2.title {
+      h2 {
         margin-left: 325px;
-        size: $titlesize;
+        font-size: $titlesize;
       }
 
       .counts {
@@ -209,9 +213,113 @@ header {
       p {
         margin-left: 325px;
         margin-top: 10px;
-        size: $textsize;
+        font-size: $textsize;
         color: $mttext;
       }
     }
+  }
+
+  #load_more {
+    @extend %rounded;
+    width: 100%;
+    margin: 20px 0;
+    background-color: $mtblue;
+    color: $mtwhite;
+    font-weight: bold;
+    font-size: $textsize;
+    height: 50px;
+    line-height: 50px;
+    border: none;
+  }
+}
+
+#right_column {
+  width: 260px / 1268px * 100%;
+  margin: 86px 14px 14px 11px;
+  display: inline-block;
+  vertical-align: bottom;
+  position: sticky;
+  bottom: 0;
+
+  #sendtip {
+    @extend %rounded;
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    color: $mtwhite;
+    background-color: $mtblue;
+    font-weight: bold;
+    text-align: center;
+    font-size: $textsize;
+    margin: 32px 0;
+  }
+
+  #rightbanner {
+    .thumbnail {
+      @extend %rounded;
+      width: 260px;
+      height: 500px;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        width: 260px;
+        height: 500px;
+      }
+    }
+  }
+
+  h1 {
+    font-size: $h1size;
+    margin: 32px;
+  }
+
+  .videoblock {
+    cursor: pointer;
+    margin-bottom: 30px;
+
+    .thumbnail {
+      @extend %rounded;
+      height: 146px;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        width: 260px;
+        height: 146px;
+      }
+    }
+
+    h2 {
+      font-weight: bold;
+      font-size: $titlesize;
+      margin: 18px 0;
+    }
+  }
+
+  #subscription {
+    @extend %rounded;
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    color: $mtwhite;
+    background-color: $mtred;
+    font-weight: bold;
+    text-align: center;
+    font-size: $textsize;
+    margin: 14px 0;
+  }
+
+  #morevids {
+    @extend %rounded;
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    color: $mttext;
+    background-color: $mtlightgray;
+    font-weight: bold;
+    text-align: center;
+    font-size: $textsize;
+    margin: 14px 0;
   }
 }

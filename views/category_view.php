@@ -6,22 +6,28 @@ class CategoryView extends View {
         $this->checkMobile();
 
         $this->template->getHeader("Мобильный телефон: ".getRussianCategoryName($data['category']), siteDescription, $data['category'], siteLogo, false);
-        ?><div id="news"><?php
+        ?>
+        <?php if ($this->template instanceof PCTemplate)
+            print "<h1>".getRussianCategoryName($data['category'])."</h1>" ?>
+        <div id="list_news"><?php
             for ($i = 0; $i < count($data['news']); $i++) {
-                ?>
-                <h3 data-id="<?php print $data['news'][$i]['id'] ?>"><?php print $data['news'][$i]['title'] ?></h3>
-                <p><?php print $data['news'][$i]['lead'] ?></p>
-                <img src="<?php print $data['news'][$i]['pic'] ?>">
-                <p>Views: <?php print $data['news'][$i]['views'] ?></p>
-                <a href="/post_<?php print $data['news'][$i]['id'] ?>.html">Читать</a>
-                <br><br>
-                <?php
-            }
+                $this->template->printNewsCard($data['news'][$i]);
 
+            }
             ?>
         </div>
-        <button onclick="LoadMoreFromCategory(<?php echo end($data['news'])['id'] ?>, '<?php echo $data['category'] ?>')">Ещё!</button>
         <?php
+        if ($this->template instanceof MobileTemplate) {
+            ?>
+            <div id="btn_dload" class="btn_dload loadMoreButton" onclick="LoadMoreFromIndexPage(<?php echo end($data['news'])['id'] ?>);">
+                <img src="/assets/mobile/e.gif" alt="" /><br />
+            </div>
+            <?php
+        } else {
+            ?>
+            <button id="load_more" class="loadMoreButton" onclick="LoadMoreFromIndexPage(<?php echo end($data['news'])['id'] ?>)">Больше материалов</button>
+            <?php
+        }
         $this->template->getFooter();
     }
 }

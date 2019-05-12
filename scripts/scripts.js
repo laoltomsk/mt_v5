@@ -4,8 +4,8 @@ function LoadMoreFromIndexPage(from) {
     xhr.send();
     xhr.onload = function() {
         document.getElementById("list_news").innerHTML += xhr.responseText;
-        let newsCount = document.getElementsByClassName("block_news").length;
-        let id = document.getElementsByClassName("block_news")[newsCount-1].getAttribute("data-id");
+        let newsCount = document.getElementsByTagName("section").length;
+        let id = document.getElementsByTagName("section")[newsCount-1].getAttribute("data-id");
         document.getElementsByClassName("loadMoreButton")[0].setAttribute("onclick", "LoadMoreFromIndexPage("+id+")");
     }
 }
@@ -16,8 +16,8 @@ function LoadMoreFromCategory(from, category) {
     xhr.send();
     xhr.onload = function() {
         document.getElementById("list_news").innerHTML += xhr.responseText;
-        let newsCount = document.getElementsByClassName("block_news").length;
-        let id = document.getElementsByClassName("block_news")[newsCount-1].getAttribute("data-id");
+        let newsCount = document.getElementsByTagName("section").length;
+        let id = document.getElementsByTagName("section")[newsCount-1].getAttribute("data-id");
         document.getElementsByClassName("loadMoreButton")[0].setAttribute("onclick", "LoadMoreFromCategory("+id+",'"+category+"')");
     }
 }
@@ -28,9 +28,9 @@ function LoadMoreByTag(from, category, tag) {
     xhr.send();
     xhr.onload = function() {
         document.getElementById("list_news").innerHTML += xhr.responseText;
-        let newsCount = document.getElementsByClassName("block_news").length;
-        let id = document.getElementsByClassName("block_news")[newsCount-1].getAttribute("data-id");
-        document.getElementsByClassName("loadMoreButton")[0].setAttribute("onclick", "LoadMoreFromCategory("+id+",'"+category+"'&tag='"+tag+"')");
+        let newsCount = document.getElementsByTagName("section").length;
+        let id = document.getElementsByTagName("section")[newsCount-1].getAttribute("data-id");
+        document.getElementsByClassName("loadMoreButton")[0].setAttribute("onclick", "LoadMoreFromCategory("+id+",'"+category+"','"+tag+"')");
     }
 }
 
