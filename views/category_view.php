@@ -19,13 +19,13 @@ class CategoryView extends View {
         <?php
         if ($this->template instanceof MobileTemplate) {
             ?>
-            <div id="btn_dload" class="btn_dload loadMoreButton" onclick="LoadMoreFromIndexPage(<?php echo end($data['news'])['id'] ?>);">
+            <div id="btn_dload" class="btn_dload loadMoreButton" onclick="LoadMoreFromCategory(<?php echo end($data['news'])['id'] ?>, '<?php echo $data['category'] ?>');">
                 <img src="/assets/mobile/e.gif" alt="" /><br />
             </div>
             <?php
         } else {
             ?>
-            <button id="load_more" class="loadMoreButton" onclick="LoadMoreFromIndexPage(<?php echo end($data['news'])['id'] ?>)">Больше материалов</button>
+            <button id="load_more" class="loadMoreButton" onclick="LoadMoreFromCategory(<?php echo end($data['news'])['id'] ?>, '<?php echo $data['category'] ?>')">Больше материалов</button>
             <?php
         }
         $this->template->getFooter();
