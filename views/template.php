@@ -1,11 +1,11 @@
 <?php
 
 class Template {
-    public function getHeader($title, $description, $category, $pic, $isArticle) {
+    public function getHeader($title, $description, $category, $pic, $isArticle, $ads) {
 
     }
 
-    public function getFooter() {
+    public function getFooter($ads) {
 
     }
 

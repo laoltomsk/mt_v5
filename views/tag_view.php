@@ -5,7 +5,7 @@ class TagView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader("Mobiltelefon.ru: ".getRussianCategoryName($data['category'])." по тегу ".$data['tag'], siteDescription, $data['category'], siteLogo, false);
+        $this->template->getHeader("Mobiltelefon.ru: ".getRussianCategoryName($data['category'])." по тегу ".$data['tag'], siteDescription, $data['category'], siteLogo, false, $data['ads']);
         ?>
         <?php if ($this->template instanceof PCTemplate)
             print "<h1>".getRussianCategoryName($data['category'])." по тегу ".$data['tag']."</h1>";
@@ -29,6 +29,6 @@ class TagView extends View {
             <button id="load_more" class="loadMoreButton" onclick="LoadMoreByTag(<?php echo end($data['news'])['id'] ?>, '<?php echo $data['category'] ?>', '<?php echo $data['tag'] ?>')">Больше материалов</button>
             <?php
         }
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }

@@ -5,7 +5,7 @@ class PostView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader($data['post']['title'], $data['post']['lead'], $data['post']['category'], $data['post']['pic'], true);
+        $this->template->getHeader($data['post']['title'], $data['post']['lead'], $data['post']['category'], $data['post']['pic'], true, $data['ads']);
         ?><div id="post">
 
             <h2><?php echo $data['post']['title']?></h2>
@@ -26,6 +26,6 @@ class PostView extends View {
             AddView(<?php echo $data['post']['id'] ?>);
         </script>
         <?php
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }

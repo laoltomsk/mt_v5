@@ -5,7 +5,7 @@ class CategoryView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader("Мобильный телефон: ".getRussianCategoryName($data['category']), siteDescription, $data['category'], siteLogo, false);
+        $this->template->getHeader("Мобильный телефон: ".getRussianCategoryName($data['category']), siteDescription, $data['category'], siteLogo, false, $data['ads']);
         ?>
         <?php if ($this->template instanceof PCTemplate)
             print "<h1>".getRussianCategoryName($data['category'])."</h1>" ?>
@@ -28,6 +28,6 @@ class CategoryView extends View {
             <button id="load_more" class="loadMoreButton" onclick="LoadMoreFromCategory(<?php echo end($data['news'])['id'] ?>, '<?php echo $data['category'] ?>')">Больше материалов</button>
             <?php
         }
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }
