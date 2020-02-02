@@ -5,7 +5,7 @@ class LoginView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader("Mobiltelefon.ru: вход", siteDescription, '', siteLogo, false);
+        $this->template->getHeader("Mobiltelefon.ru: вход", siteDescription, '', siteLogo, false, $data['ads']);
         ?><div id="news">
             <form action="/controllers/login.php" method="POST">
                 <input name="login"><br>
@@ -14,6 +14,6 @@ class LoginView extends View {
             </form>
         </div>
         <?php
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }

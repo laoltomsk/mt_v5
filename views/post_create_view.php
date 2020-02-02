@@ -5,7 +5,7 @@ class PostCreateView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader("Создание поста", "Создание поста", '', siteLogo, false);
+        $this->template->getHeader("Создание поста", "Создание поста", '', siteLogo, false, $data['ads']);
         ?><div id="news">
             <form action="/controllers/createPost.php" method="POST">
                 <input name="title" placeholder="title"><br>
@@ -25,6 +25,6 @@ class PostCreateView extends View {
             </form>
         </div>
         <?php
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }

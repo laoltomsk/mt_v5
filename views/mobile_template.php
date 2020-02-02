@@ -2,7 +2,7 @@
 require_once("template.php");
 
 class MobileTemplate extends Template {
-    public function getHeader($title, $description, $category, $pic, $isArticle) {
+    public function getHeader($title, $description, $category, $pic, $isArticle, $ads) {
         ?>
         <!DOCTYPE html>
         <html lang="ru">
@@ -33,9 +33,14 @@ class MobileTemplate extends Template {
             <meta name="robots" content="index,follow">
             <meta name="google-site-verification" content="UDX_nuGeNzWBLXRAwO_a5dCVRSMTXIYW1E_BelG9a24" />
             <meta name="theme-color" content="#1180aa">
-            <meta name="msapplication-navbutton-color" content="#1180aa">
             <meta name="apple-mobile-web-app-capable" content="yes">
-            <meta name="apple-mobile-web-app-status-bar-style" content="#1180aa">
+            <?php if ($ads['mobileBranding']) { ?>
+                <meta name="msapplication-navbutton-color" content="<?php echo $ads['mobileBranding']->color ?>">
+                <meta name="apple-mobile-web-app-status-bar-style" content="<?php echo $ads['mobileBranding']->color ?>">
+            <? } else { ?>
+                <meta name="msapplication-navbutton-color" content="#336699">
+                <meta name="apple-mobile-web-app-status-bar-style" content="#336699">
+            <? } ?>
             <link rel="icon" type="image/x-icon" href="/assets/mobile/favicon.ico">
             <link rel="shortcut icon" type="image/x-icon" href="/assets/mobile/favicon.ico" />
             <link rel="icon" sizes="192x192" href="/assets/mobile/touch-icon-192x192.png">
@@ -65,10 +70,30 @@ class MobileTemplate extends Template {
             <script src="/assets/mobile/ldo.js?t=18"></script>
             <link rel="stylesheet" href="/styles/sitemap_style.css">
             <title>Мобильный телефон: новости и обзоры</title>
-
             <script src="/scripts/scripts.js"></script>
         </head>
         <body>
+        <?php if ($ads['mobileBranding']) { ?>
+            <style>
+                #main-wrapper {
+                    margin-top: 250px;
+                }
+
+                #aroundPage {
+                    background-image: url("/photo/rek/branding/<?php echo $ads['mobileBranding']->id ?>_761.jpg");
+                    background-color: <?php echo $ads['mobileBranding']->color ?>;
+                }
+            </style>
+            <div id="aroundPage">
+                <?php $sep = strpos($ads['mobileBranding']->link, "?") === false ? "?" : "&"; ?>
+                <a href="<?php echo $ads['mobileBranding']->link.$sep."rnd=".rand(0, infinity) ?>" target="blank_">
+                    <?php if ($ads['mobileBranding']->pixel != "") {
+                        $sep = strpos($ads['mobileBranding']->pixel, "?") === false ? "?" : "&"; ?>
+                        <img src="<?php echo $ads['mobileBranding']->pixel.$sep."rnd=".rand(0, infinity) ?>"
+                    <?php } ?>
+                </a>
+            </div>
+        <?php } ?>
 		    <div id="main-wrapper">
                 <header id="header_mob_mt">
                     <img onclick="set_visible_m_menu(true);" src="/assets/mobile/e.gif" class="emu_a nogalleryimg" alt="Меню" title="Меню"><img class="cnt-plus-mod" src="http://ad.adriver.ru/cgi-bin/rle.cgi?sid=1&bt=21&ad=676844&pid=2884937&bid=6088804&bn=6088804&rnd=74658369" alt="" />
@@ -104,7 +129,7 @@ class MobileTemplate extends Template {
         <?php
     }
 
-    public function getFooter()
+    public function getFooter($ads)
     {
         ?>
                 </div>

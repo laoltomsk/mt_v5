@@ -5,7 +5,7 @@ class IndexView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader(siteTitle, siteDescription, '', siteLogo, false);
+        $this->template->getHeader(siteTitle, siteDescription, '', siteLogo, false, $data['ads']);
         if ($this->template instanceof MobileTemplate) {
             ?>
             <!--lots of code by Gleb Panteleev-->
@@ -71,6 +71,6 @@ class IndexView extends View {
                 <button id="load_more" class="loadMoreButton" onclick="LoadMoreFromIndexPage(<?php echo end($data['news'])['id'] ?>)">Больше материалов</button>
                 <?php
             }
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }
