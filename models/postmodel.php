@@ -9,7 +9,7 @@ class PostModel extends Model {
         $queryResults = $db->query("SELECT * FROM `tb_uri`
           INNER JOIN `tb_pages_viewed` ON `tb_uri`.`uri` = `tb_pages_viewed`.`uri`
           INNER JOIN `tb_pages` ON `tb_uri`.`id` = `tb_pages`.`uri_id`
-          WHERE `tb_uri`.`uri` = $id");
+          WHERE `tb_uri`.`uri` = '$id'");
 
         if ($queryResult = $queryResults->fetch_array()) {
             $news = array(

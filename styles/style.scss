@@ -1,0 +1,325 @@
+$mtlightgray: #f9f9f9;
+$mttext: #000000;
+$mtred: #ff0000;
+$mtblue: #336699;
+$mtgray: #a9a9a9;
+$mtwhite: #ffffff;
+
+$textsize: 18px;
+$titlesize: 22px;
+$h1size: 36px;
+
+%rounded {
+  border-radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  color: $mttext;
+  font-family: "Noto Sans", sans-serif;
+  box-sizing: border-box;
+  letter-spacing: -0.5px;
+}
+
+a {
+  text-decoration: none;
+  color: $mttext;
+}
+
+body {
+  background-color: $mtlightgray;
+}
+
+#main-wrapper {
+  @extend %rounded;
+  width: 1280px;
+  max-width: 100%;
+  background-color: $mtwhite;
+  margin: 0 auto;
+  padding: 6px / 1280px * 100%;
+}
+
+header {
+  .social_btns {
+    text-align: right;
+    margin: 10px 50px 0 10px;
+
+    .social_btn {
+      margin: 0 13px;
+    }
+
+    #youtube_btn {
+      color: darkred;
+    }
+
+    #telegram_btn {
+      color: lightskyblue;
+    }
+
+    #vk_btn {
+      color: darkblue;
+    }
+
+    #instagram_btn {
+      color: darkviolet;
+    }
+
+    #facebook_btn {
+      color: darkblue;
+    }
+
+    #twitter_btn {
+      color: lightskyblue;
+    }
+  }
+
+  .logo {
+    float: left;
+    width: 244px;
+    height: 50px;
+  }
+
+  .grayline {
+    @extend %rounded;
+    font-size: $textsize;
+    font-weight: bold;
+    width: 970px / 1268px * 100%;
+    margin-left: 287px;
+    padding: 0 16px;
+    height: 50px;
+    line-height: 50px;
+    background-color: $mtlightgray;
+
+    .categories {
+      display: inline-block;
+
+      a {
+        display: inline-block;
+        margin: 0 20px;
+      }
+
+      .inactive {
+        cursor: not-allowed;
+      }
+
+      .tag {
+        color: $mtred;
+      }
+    }
+
+    .searchfield {
+      float: right;
+      max-width: 25%;
+      padding: 0 20px;
+
+      input {
+        @extend %rounded;
+        font-size: $textsize;
+        background: none;
+        border: none;
+        font-weight: bold;
+        padding: 5px;
+        width: 100%;
+      }
+
+      input:focus {
+        background-color: $mtwhite;
+        outline: none;
+        border: 1px dashed $mtgray;
+      }
+    }
+  }
+}
+
+#main-content {
+  width: 950px / 1268px * 100%;
+  margin: 14px;
+  margin-bottom: 72px;
+  display: inline-block;
+  vertical-align: top;
+
+  h1 {
+    font-size: $h1size;
+    margin: 32px 45px;
+  }
+
+  .top_blocks {
+    text-align: justify;
+    text-align-last: justify;
+
+    .top_block {
+      width: 301px;
+      display: inline-block;
+      text-align: left;
+      text-align-last: left;
+      vertical-align: top;
+      cursor: pointer;
+
+      .thumbnail {
+        @extend %rounded;
+        height: 193px;
+        overflow: hidden;
+
+        img {
+          object-fit: cover;
+          width: 301px;
+          height: 193px;
+        }
+      }
+
+      h2 {
+        font-size: $titlesize;
+        margin: 10px 0;
+      }
+
+      .counts, .counts * {
+        color: $mtgray;
+      }
+    }
+  }
+
+  #list_news {
+    section {
+      min-height: 193px;
+      cursor: pointer;
+      margin-bottom: 30px;
+
+      .thumbnail {
+        @extend %rounded;
+        width: 301px;
+        height: 193px;
+        overflow: hidden;
+        float: left;
+
+        img {
+          object-fit: cover;
+          width: 301px;
+          height: 193px;
+        }
+      }
+
+      h2 {
+        margin-left: 325px;
+        font-size: $titlesize;
+      }
+
+      .counts {
+        margin-left: 325px;
+        margin-top: 5px;
+        color: $mtgray;
+      }
+
+      p {
+        margin-left: 325px;
+        margin-top: 10px;
+        font-size: $textsize;
+        color: $mttext;
+      }
+    }
+  }
+
+  #load_more {
+    @extend %rounded;
+    width: 100%;
+    margin: 20px 0;
+    background-color: $mtblue;
+    color: $mtwhite;
+    font-weight: bold;
+    font-size: $textsize;
+    height: 50px;
+    line-height: 50px;
+    border: none;
+  }
+}
+
+#right_column {
+  width: 260px / 1268px * 100%;
+  margin: 86px 14px 14px 11px;
+  display: inline-block;
+  vertical-align: bottom;
+  position: sticky;
+  bottom: 0;
+
+  #sendtip {
+    @extend %rounded;
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    color: $mtwhite;
+    background-color: $mtblue;
+    font-weight: bold;
+    text-align: center;
+    font-size: $textsize;
+    margin: 32px 0;
+  }
+
+  #rightbanner {
+    .thumbnail {
+      @extend %rounded;
+      width: 260px;
+      height: 500px;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        width: 260px;
+        height: 500px;
+      }
+    }
+  }
+
+  h1 {
+    font-size: $h1size;
+    margin: 32px;
+  }
+
+  .videoblock {
+    cursor: pointer;
+    margin-bottom: 30px;
+
+    .thumbnail {
+      @extend %rounded;
+      height: 146px;
+      overflow: hidden;
+
+      img {
+        object-fit: cover;
+        width: 260px;
+        height: 146px;
+      }
+    }
+
+    h2 {
+      font-weight: bold;
+      font-size: $titlesize;
+      margin: 18px 0;
+    }
+  }
+
+  #subscription {
+    @extend %rounded;
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    color: $mtwhite;
+    background-color: $mtred;
+    font-weight: bold;
+    text-align: center;
+    font-size: $textsize;
+    margin: 14px 0;
+  }
+
+  #morevids {
+    @extend %rounded;
+    display: block;
+    width: 100%;
+    line-height: 50px;
+    color: $mttext;
+    background-color: $mtlightgray;
+    font-weight: bold;
+    text-align: center;
+    font-size: $textsize;
+    margin: 14px 0;
+  }
+}
