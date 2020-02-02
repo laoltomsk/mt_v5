@@ -2,7 +2,7 @@
 require_once("template.php");
 
 class PCTemplate extends Template {
-    public function getHeader($title, $description, $category, $pic, $isArticle) {
+    public function getHeader($title, $description, $category, $pic, $isArticle, $ads) {
         ?>
         <!DOCTYPE html>
         <html>
@@ -52,6 +52,39 @@ class PCTemplate extends Template {
             <script src="/scripts/scripts.js"></script>
         </head>
         <body>
+        <?php if ($ads['branding']) { ?>
+            <style>
+                #main-wrapper {
+                    margin-top: 178px;
+                }
+
+                #aroundPage {
+                    background-image: url("/photo/rek/branding/<?php echo $ads['branding']->id ?>_1280.jpg");
+                    background-color: <?php echo $ads['branding']->color ?>;
+                }
+
+                @media (min-width: 1281px) {
+                    #aroundPage {
+                        background-image: url("/photo/rek/branding/<?php echo $ads['branding']->id ?>_1440.jpg");
+                    }
+                }
+
+                @media (min-width: 1681px) {
+                    #aroundPage {
+                        background-image: url("/photo/rek/branding/<?php echo $ads['branding']->id ?>_1920.jpg");
+                    }
+                }
+            </style>
+            <div id="aroundPage">
+                <?php $sep = strpos($ads['branding']->link, "?") === false ? "?" : "&"; ?>
+                <a href="<?php echo $ads['branding']->link.$sep."rnd=".rand(0, infinity) ?>" target="blank_">
+                    <?php if ($ads['branding']->pixel != "") {
+                        $sep = strpos($ads['branding']->pixel, "?") === false ? "?" : "&"; ?>
+                        <img src="<?php echo $ads['branding']->pixel.$sep."rnd=".rand(0, infinity) ?>"
+                    <?php } ?>
+                </a>
+            </div>
+        <?php } ?>
         <div id="main-wrapper">
             <header>
                 <div class="social_btns">
@@ -83,7 +116,7 @@ class PCTemplate extends Template {
         <?php
     }
 
-    public function getFooter()
+    public function getFooter($ads)
     {
         ?>
             </div>

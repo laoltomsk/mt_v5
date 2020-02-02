@@ -5,7 +5,7 @@ class SiteMapView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader("Mobiltelefon.ru: карта сайта", siteDescription, '', siteLogo, false);
+        $this->template->getHeader("Mobiltelefon.ru: карта сайта", siteDescription, '', siteLogo, false, $data['ads']);
         if ($this->template instanceof MobileTemplate) {
             print "<h1 class='head_dTable_v2'>Карта сайта</h1>";
         }
@@ -35,6 +35,6 @@ class SiteMapView extends View {
             </div>
         </div>
         <?php
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }

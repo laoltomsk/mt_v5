@@ -5,7 +5,7 @@ class PostEditView extends View {
     public function show($data) {
         $this->checkMobile();
 
-        $this->template->getHeader("Редактирование записи ".$data['post']['title'], $data['post']['lead'], $data['post']['category'], siteLogo, false);
+        $this->template->getHeader("Редактирование записи ".$data['post']['title'], $data['post']['lead'], $data['post']['category'], siteLogo, false, $data['ads']);
         ?><form action="/controllers/editPost.php" method="POST">
             <input name="title" placeholder="title" value="<?php echo $data['post']['title'] ?>"><br>
             <textarea name="lead"><?php echo $data['post']['lead'] ?></textarea><br>
@@ -24,6 +24,6 @@ class PostEditView extends View {
             <input type="submit">
         </form>
         <?php
-        $this->template->getFooter();
+        $this->template->getFooter($data['ads']);
     }
 }
