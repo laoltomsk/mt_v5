@@ -122,9 +122,14 @@ class PCTemplate extends Template {
             </div>
             <div id="right_column">
                 <a id="sendtip" href="/sendtip.html">Прислать материал</a>
-                <a id="right_banner" href="#">
-                    <img src="https://mobiltelefon.ru/photo/rek/15_banners_260x500.jpg">
-                </a>
+                <?php if ($ads['rightBanner']) {
+                    $sep = strpos($ads['rightBanner']->link, "?") === false ? "?" : "&"; ?>
+                    <a id="right_banner" href="<?php echo $ads['rightBanner']->link.$sep."rnd=".rand(0, infinity) ?>" target="blank_">
+                        <img src="/photo/rek/banner/<?php echo $ads['rightBanner']->id ?>_right.jpg"/>
+                        <?php $sep = strpos($ads['rightBanner']->pixel, "?") === false ? "?" : "&"; ?>
+                        <img class="pixel" src="<?php echo $ads['rightBanner']->pixel.$sep."rnd=".rand(0, infinity) ?>">
+                    </a>
+                <?php } ?>
                 <h1>Видео</h1>
                 <div class="videoblock" onclick="Redirect('https://youtu.be/I8lkWNgLfmc')">
                     <div class="thumbnail">

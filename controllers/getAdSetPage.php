@@ -14,6 +14,7 @@ if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR'
     $data['ads'] = $adsModel->getData($db);
     $data['brandings'] = $adsModel->getAllBrandings($db);
     $data['mobileBrandings'] = $adsModel->getAllMobileBrandings($db);
+    $data['rightBanners'] = $adsModel->getAllRightBanners($db);
     $data['ideas'] = $newsModel->getData($db, '', '', infinity, 0, 100);
 
     $view->show($data);

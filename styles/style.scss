@@ -13,6 +13,12 @@ $h1size: 36px;
   border-radius: 10px;
 }
 
+%pixel {
+  width: 1px;
+  height: 1px;
+  float: right;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -47,8 +53,7 @@ body {
     height: 100%;
 
     img {
-      width: 1px;
-      height: 1px;
+      @extend %pixel;
     }
   }
 }
@@ -249,7 +254,8 @@ header {
       height: 100%;
 
       img {
-        width: 360px;
+        max-width: 360px;
+        max-height: 240px;
       }
     }
 
@@ -295,18 +301,16 @@ header {
     margin: 32px 0;
   }
 
-  #rightbanner {
-    .thumbnail {
-      @extend %rounded;
+  #right_banner {
+    width: 260px;
+    height: 500px;
+    overflow: hidden;
+
+    img:not(.pixel) {
+      object-fit: cover;
       width: 260px;
       height: 500px;
-      overflow: hidden;
-
-      img {
-        object-fit: cover;
-        width: 260px;
-        height: 500px;
-      }
+      @extend %rounded;
     }
   }
 
@@ -363,4 +367,8 @@ header {
     font-size: $textsize;
     margin: 14px 0;
   }
+}
+
+.pixel {
+  @extend %pixel;
 }

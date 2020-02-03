@@ -37,6 +37,13 @@ class AdsModel extends Model {
         else {
             $ads['mobileBranding'] = false;
         }
+        if (count($rekInfo->rightBanners) > 0) {
+            $bannerNum = rand(0, count($rekInfo->rightBanners)-1);
+            $ads['rightBanner'] = $rekInfo->rightBanners[$bannerNum];
+        }
+        else {
+            $ads['rightBanner'] = false;
+        }
 
         return $ads;
     }
@@ -150,6 +157,52 @@ class AdsModel extends Model {
         if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
             $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
             return $rekInfo->mobileBranding;
+        }
+        return false;
+    }
+
+    public function addRightBanner($db, $id, $pic260, $link, $pixel) {
+        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+            move_uploaded_file($pic260["tmp_name"], "../photo/rek/banner/{$id}_right.jpg");
+
+            $newBanner = new stdClass();
+            $newBanner->id = $id;
+            $newBanner->link = $link;
+            $newBanner->pixel = $pixel;
+
+            $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
+            $rekInfo->rightBanners[] = $newBanner;
+            $rekInfo = json_encode($rekInfo);
+            $db->query("UPDATE `ads` SET `json` = '{$rekInfo}'");
+
+            return true;
+        }
+        return false;
+    }
+
+    public function removeRightBanner($db, $id) {
+        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+            unlink("../photo/rek/banner/{$id}_right.jpg");
+
+            $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
+            $newBannerInfo = [];
+            for ($i = 0; $i < count($rekInfo->rightBanners); $i++) {
+                if ($rekInfo->rightBanners[$i]->id != $id)
+                    $newBannerInfo[] = $rekInfo->rightBanners[$i];
+            }
+            $rekInfo->rightBanners = $newBannerInfo;
+            $rekInfo = json_encode($rekInfo);
+            $db->query("UPDATE `ads` SET `json` = '{$rekInfo}'");
+
+            return true;
+        }
+        return false;
+    }
+
+    public function getAllRightBanners($db) {
+        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+            $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
+            return $rekInfo->rightBanners;
         }
         return false;
     }

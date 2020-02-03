@@ -61,6 +61,26 @@ class AdSetView extends View {
                 Цвет фона: <input name="color" type="color"><br>
                 <input type="submit">
             </form>
+            <br>
+            <h2>Правый баннер</h2>
+            <?php for ($i = 0; $i < count($data['rightBanners']); $i++) { ?>
+                <form action="/controllers/deleteBanner.php" method="POST" class="brandingListItem">
+                    <a href="<?php echo $data['rightBanners'][$i]->link ?>">
+                        <input type="hidden" name="id" value="<?php echo $data['rightBanners'][$i]->id ?>">
+                        <input type="hidden" name="type" value="right">
+                        <img src="/photo/rek/banner/<?php echo $data['rightBanners'][$i]->id ?>_right.jpg">
+                    </a>
+                    <input type="submit" value="Удалить">
+                </form>
+            <?php } ?>
+            <form action="/controllers/addBanner.php" method="POST" enctype="multipart/form-data">
+                <b>Добавить:</b><br>
+                Изображение шириной 260: <input name="image260" type="file" required><br>
+                Ссылка для перехода по клику: <input name="link"><br>
+                Ссылка для пикселя (пустая, если не нужен): <input name="pixel"><br>
+                <input type="hidden" name="type" value="right">
+                <input type="submit">
+            </form>
         </div>
         <?php
         $this->template->getFooter($data['ads']);
