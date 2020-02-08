@@ -245,6 +245,114 @@ header {
     }
   }
 
+  .container {
+    .part {
+      border: 0.1rem solid $mtblue;
+      padding: 1rem;
+      margin: 1rem;
+
+      .block {
+        display: flex;
+        flex-direction: row;
+        border-bottom: 0.1rem dashed $mtblue;
+        margin-bottom: 0.5rem;
+      }
+
+      .left {
+        flex: 1;
+        padding: 0.5rem;
+      }
+
+      .main {
+        flex: 4;
+        padding: 0.5rem;
+      }
+
+      input {
+        width: 95%;
+        max-width: 640px;
+        margin: 0.2rem;
+      }
+
+      textarea {
+        width: 95%;
+        max-width: 640px;
+        margin: 0.2rem;
+        height: 14rem;
+      }
+
+      .large {
+        input, div {
+          font-size: 1.5rem;
+        }
+      }
+
+      .preview {
+        width: 95%;
+        max-width: 640px;
+        height: 12rem;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        padding: 0.5rem;
+        border: 0.1rem dotted $mtblue;
+        white-space: nowrap;
+
+        img {
+          height: 10rem;
+          padding-right: 0.5rem;
+        }
+      }
+
+      .left .add * {
+        font-size: 0.5rem;
+      }
+
+      .delete {
+        color: $mtred;
+        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .block:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+
+      #pb-container {
+        height: 1.5rem;
+        width: 100%;
+        border: 0.01rem solid $mtblue;
+
+        #pb {
+          height: 1.5rem;
+          background-color: $mtblue;
+          width: 0%;
+        }
+      }
+    }
+  }
+
+  .flowingmenu {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    width: 20%;
+    border: 0.1rem solid $mtblue;
+    z-index: 10000000;
+    background: white;
+
+    button {
+      margin: 0.1rem;
+      width: calc(25% - 0.45rem);
+    }
+
+    input {
+      margin: 0.1rem;
+      width: calc(100% - 0.45rem);
+    }
+  }
+
   .brandingListItem {
     display: inline-block;
 
