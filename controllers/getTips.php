@@ -9,6 +9,7 @@ if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR'
 
     $model = new TipModel();
     $view = new TipsView();
+    $ads = new AdsModel();
 
     $data = array();
     $data['tips'] = $model->getData($db);

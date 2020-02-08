@@ -25,6 +25,7 @@ class PostView extends View {
         <script>
             AddView(<?php echo $data['post']['id'] ?>);
         </script>
+        </div>
         <?php
         $this->template->getFooter($data['ads']);
     }

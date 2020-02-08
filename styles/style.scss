@@ -61,7 +61,6 @@ body {
 #main-wrapper {
   @extend %rounded;
   width: 1280px;
-  max-width: 100%;
   background-color: $mtwhite;
   margin: 0 auto;
   padding: 6px / 1280px * 100;
@@ -160,7 +159,7 @@ header {
 }
 
 #main-content {
-  width: 950px / 1268px * 100%;
+  width: 945px / 1268px * 100%;
   margin: 14px;
   margin-bottom: 72px;
   display: inline-block;
