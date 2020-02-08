@@ -1,9 +1,6 @@
 <?php
 require_once("block.php");
 
-const IMAGESIZE_X = 0;
-const IMAGESIZE_Y = 1;
-
 class pictureBlock extends Block
 {
     private $picsId;
@@ -27,31 +24,33 @@ class pictureBlock extends Block
         $this->isInvisible = $block->isInvisible;
         $this->setSizes = $block->setSizes;
         $this->saveNames = $block->saveNames;
-        $this->files = $block->files;
+        $this->files = $block->files ?? NULL;
         $this->subscript = $block->subscript;
     }
 
-    public function printCode()
+    public function generate()
     {
-        $this->printBeginning();
+        $result = $this->printBeginning();
 
         if ($this->setSizes)
-            $this->processImagesAndPrintCodeForImages();
+            $result .= $this->processImagesAndPrintCodeForImages();
         else
-            $this->printCodeForImages();
+            $result .= $this->printCodeForImages();
 
-        $this->printEnding();
+        $result .= $this->printEnding();
+
+        return $result;
     }
 
     private function processImagesAndPrintCodeForImages() {
         global $currentPicIndex;
 
         //немного инициализации
-        $name = NamingHelpers::remove_quotes($_POST['name']);
+        $result = "";
+        $name = NamingHelpers::remove_quotes($_POST['title']);
         $engname = NamingHelpers::convert_to_translit($name);
         $curdate = strtolower(date("Fy/d"));
         $pics = $_FILES[$this->picsId];
-        $password = $_POST['pwd'];
         $maxwidth = PictureHelpers::getTotalWidth($this->columns);
 
         $picsNum = count($pics['name']);
@@ -59,7 +58,7 @@ class pictureBlock extends Block
         $rowsCount = ceil($picsNum / $this->columns);
         //цикл по строкам
         for ($row = 0; $row < $rowsCount; $row++) {
-            print "\r\n";
+            $result .= "\r\n";
 
             //считаем суммарную ширину изображений в строках
             $sumwidth = 0;
@@ -84,10 +83,10 @@ class pictureBlock extends Block
                         $src = PictureHelpers::openImage($tmpname, $filetype);
                         PictureHelpers::convertPngOrBmpToJpg($src, $filetype, $tmpname, $newname);
                     }
-                    FTPHelpers::pushImage($tmpname, $newname, $curdate, $password);
+                    PictureHelpers::pushImage($tmpname, $newname, $curdate, false);
 
                     //выводим код картинки
-                    print "<img src=\"/photo/$curdate/$newname\" alt=\"$name\" "
+                    $result .= "<img src=\"/photo/$curdate/$newname\" alt=\"$name\" "
                         . "width=\"{$size[IMAGESIZE_X]}\" height=\"{$size[IMAGESIZE_Y]}\" title=\"\" />";
                     $currentPicIndex++;
                     $currentPicNumber++;
@@ -104,15 +103,15 @@ class pictureBlock extends Block
 
                     $src = PictureHelpers::openImage($tmpname, $filetype);
                     PictureHelpers::convertPngOrBmpToJpg($src, $filetype, $tmpname, $newname);
-                    FTPHelpers::pushImage($tmpname, $newname, $curdate, $password);
+                    PictureHelpers::pushImage($tmpname, $newname, $curdate, true);
 
                     PictureHelpers::resizeImageInPlace($src, $tmpname, $filetype, $height);
                     $size = getimagesize($tmpname);
                     $newname_resize = explode(".", $newname)[0] . "_resize." . $filetype;
-                    FTPHelpers::pushImage($tmpname, $newname_resize, $curdate, $password);
+                    PictureHelpers::pushImage($tmpname, $newname_resize, $curdate, false);
 
                     //выводим код картинки
-                    print "<a href=\"/photo/$curdate/$newname\" class=\"highslide\" "
+                    $result .= "<a href=\"/photo/$curdate/$newname\" class=\"highslide\" "
                         . "onclick=\"return hs.expand(this)\"><img src=\"/photo/$curdate/$newname_resize\" "
                         . "alt=\"$name\" width=\"{$size[IMAGESIZE_X]}\" height=\"{$size[IMAGESIZE_Y]}\" "
                         . "title=\"\" /></a> ";
@@ -120,14 +119,16 @@ class pictureBlock extends Block
                     $currentPicNumber++;
                 }
             }
-            if ($currentPicNumber < $picsNum) print "\r\n<br><br>";
+            if ($currentPicNumber < $picsNum) $result .= "\r\n<br><br>";
         }
+        return $result;
     }
 
     private function printCodeForImages()
     {
         //немного инициализации
-        $name = NamingHelpers::remove_quotes($_POST['name']);
+        $result = "";
+        $name = NamingHelpers::remove_quotes($_POST['title']);
         $engname = NamingHelpers::convert_to_translit($name);
         $curdate = strtolower(date("Fy/d"));
         $maxwidth = PictureHelpers::getTotalWidth($this->columns);
@@ -138,45 +139,39 @@ class pictureBlock extends Block
         $currentPicNumber = 0;
 
         for ($row = 0; $row < $rowsCount; $row++) {
-            print "\r\n";
+            $result .= "\r\n";
             for ($col = 0; $col < $this->columns && $currentPicNumber < $picsNum; $col++) {
                 $oldname = $this->files[$currentPicNumber];
                 $filetype = PictureHelpers::getFileType($oldname);
-                $newname = PictureHelpers::getNewName(
-                    $oldname,
-                    $engname,
-                    $this->picsId . "_" . $currentPicNumber,
-                    $filetype,
-                    $this->saveNames);
+                $newname = PictureHelpers::getNewName($oldname, $engname, $this->picsId . "_" . $currentPicNumber, $filetype, $this->saveNames);
                 if ($filetype === "png" || $filetype == "bmp") {
                     $filetype = "jpg";
                     $newname = explode(".", $newname)[0] . ".jpg";
                 }
                 $newname_resize = explode(".", $newname)[0] . "_resize." . $filetype;
-                print "<a href=\"/photo/$curdate/$newname\" class=\"highslide\" "
+                $result .= "<a href=\"/photo/$curdate/$newname\" class=\"highslide\" "
                     . "onclick=\"return hs.expand(this)\"><img src=\"/photo/$curdate/$newname_resize\" "
                     . "alt=\"$name\" width=\"" . floor($width) . "\" title=\"\" /></a> ";
                 $currentPicNumber++;
             }
-            if ($currentPicNumber < $picsNum) print "\r\n<br><br>";
+            if ($currentPicNumber < $picsNum) $result .= "\r\n<br><br>";
         }
+        return $result;
     }
 
     private function printBeginning()
     {
-        if ($this->isInvisible) {
-            print "\r\n<div style=\"text-align: center; display: none;\">";
-        } else {
-            print "\r\n<br><br>";
-            print "\r\n<div style=\"text-align: center;\">";
-        }
+        if ($this->isInvisible)
+            return "\r\n<div style=\"text-align: center; display: none;\">";
+
+        return "\r\n<br><br>\r\n<div style=\"text-align: center;\">";
     }
 
     private function printEnding()
     {
-        if ($this->subscript !== "") {
-            print "\r\n<br><i>" . $this->subscript . "</i>";
-        }
-        print "</div>";
+        if ($this->subscript === "")
+            return "</div>";
+
+        return "\r\n<br><i>" . $this->subscript . "</i></div>";
     }
 }

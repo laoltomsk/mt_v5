@@ -7,12 +7,18 @@ class PostCreateView extends View {
 
         $this->template->getHeader("Создание поста", "Создание поста", '', siteLogo, false, $data['ads']);
         ?>
-        <nav class="container" id="editor">
+        <div class="container" id="editor">
             <div class="part" id="headline">
                 <div class="block large">
                     <div class="left">Название:</div>
                     <div class="main">
                         <input placeholder="До 70 символов" maxlength="70">
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="left">Подводка:</div>
+                    <div class="main">
+                        <textarea id="lead" placeholder="Текст подводки" class="smallTextarea"></textarea>
                     </div>
                 </div>
             </div>
@@ -38,7 +44,7 @@ class PostCreateView extends View {
                 </div>
 
                 <div class="block" data-type="picture">
-                    <div class="left">Блок картинок:</div>
+                    <div class="left">Картинки:</div>
                     <div class="main">
                         <input type="file" multiple accept="image/jpeg,image/png,image/gif"><br>
                         <div class="preview"></div>
@@ -51,18 +57,18 @@ class PostCreateView extends View {
                 </div>
 
                 <div class="block" data-type="video">
-                    <div class="left">Блок с видео:</div>
+                    <div class="left">Видеофайл:</div>
                     <div class="main">
-                        <input placeholder="Ссылка на видео" class="link">
+                        <input placeholder="Ссылка на видео" class="link"><br>
                         <input class="vertical" type="radio" style="width: 1rem" name="orient">Вертикальное
                         <input type="radio" style="width: 1rem" name="orient" checked>Горизонтальное
                     </div>
                 </div>
 
                 <div class="block" data-type="link">
-                    <div class="left">Ссылка по центру:</div>
+                    <div class="left">Жирное по центру:</div>
                     <div class="main">
-                        <textarea placeholder="Текст новости"></textarea>
+                        <textarea placeholder="Жирный текст по центру" class="smallTextarea"></textarea>
                     </div>
                 </div>
 
@@ -86,19 +92,11 @@ class PostCreateView extends View {
                 </div>
 
                 <div class="block" data-type="raw">
-                    <div class="left">Блок готового кода:</div>
+                    <div class="left">Произвольный код:</div>
                     <div class="main">
-                        <textarea placeholder="Блок кода"></textarea>
+                        <textarea placeholder="Блок кода"></textarea><br>
                         <input type="checkbox" style="width: 1rem" class="isDiv" name="orient">Обернуть в div<br>
                         <input type="checkbox" style="width: 1rem" class="isPic" name="orient">Это картинка
-                    </div>
-                </div>
-
-                <div class="block" data-type="end">
-                    <div class="left">Подпись:</div>
-                    <div class="main">
-                        <input class="name" placeholder="Имя Фамилия"><br>
-                        <input class="src" placeholder="Источник (в родительном падеже, только если нужен)">
                     </div>
                 </div>
 
@@ -110,7 +108,6 @@ class PostCreateView extends View {
                         <option value="picture">Картинки</option>
                         <option value="video">Видеофайл</option>
                         <option value="raw">Произвольный код</option>
-                        <option value="end">Конец новости</option>
                         <option value="h2">Заголовок раздела</option>
                         <option value="link">Жирное по центру</option>
                         <option value="redbutton">Красная кнопка</option>
@@ -123,20 +120,20 @@ class PostCreateView extends View {
             </div>
 
             <div class="part" id="submit">
+                <input id="author" placeholder="Подпись автора"><br>
+                <input id="source" placeholder="По материалам... (только если нужно)"><br>
+                <input id="sourceLinkg" placeholder="Ссылка на источник (только если нужна)"><br>
+                <input id="tags" placeholder="Тэги (через запятую)"><br>
+                <select id="category">
+                    <option value="news">Новости</option>
+                    <option value="reviews">Обзоры</option>
+                    <option value="games">Игры</option>
+                    <option value="blog">Статьи</option>
+                </select><br>
                 <input type="button" value="Отправить" onclick="sendFormData()"><br>
-                <input type="password" id="ftp" placeholder="Пароль"><br>
                 <div id="pb-container"><div id="pb"></div></div>
             </div>
-
-            <div class="part" id="result">
-                <div class="block">
-                    <div class="left">Итоговый код:</div>
-                    <div class="main">
-                        <textarea></textarea>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        </div>
 
         <div class="flowingmenu">
             <button onclick="bold()"><b>B</b></button>
@@ -145,9 +142,8 @@ class PostCreateView extends View {
             <button onclick="link()">A</button>
             <br>
             <input placeholder="input://link.here/and/press/A">
-            <br>
-            <a href="/newslist.html">Списки новостей</a>
         </div>
+        <script src="/scripts/editor.js"></script>
         <?php
         $this->template->getFooter($data['ads']);
     }

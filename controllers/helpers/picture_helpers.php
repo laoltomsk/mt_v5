@@ -57,4 +57,13 @@ class PictureHelpers
             imagejpeg($dst, $tmpname, 90);
         }
     }
+
+    static function pushImage($tmpname, $newname, $curdate, $keepCopy) {
+        if ($keepCopy) {
+            copy($tmpname, "../photo/$curdate/$newname");
+        }
+        else {
+            rename($tmpname, "../photo/$curdate/$newname");
+        }
+    }
 }

@@ -2,5 +2,5 @@
 
 abstract class Block
 {
-    abstract function printCode();
+    abstract function generate();
 }

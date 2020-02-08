@@ -10,12 +10,13 @@ class youtubeBlock extends Block
         $this->id = $block->id;
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br><br>";
-        print "\r\n<div style=\"text-align: center;\"><iframe width=\"725\" height=\"408\" "
+        $result = "\r\n<br><br>";
+        $result .= "\r\n<div style=\"text-align: center;\"><iframe width=\"725\" height=\"408\" "
                 ."src=\"https://www.youtube.com/embed/$this->id\" frameborder=\"0\" "
                 ."allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen>"
                 ."</iframe></div>";
+        return $result;
     }
 }

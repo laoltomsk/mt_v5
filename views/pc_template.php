@@ -48,7 +48,11 @@ class PCTemplate extends Template {
             <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext" rel="stylesheet">
             <link rel="stylesheet" href="/styles/style.css">
             <link rel="stylesheet" href="/styles/sitemap_style.css">
-
+            <!--[if lt IE 9]><script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+            <script type="text/javascript">
+                window.jQuery || document.write('<script type="text/javascript" src="/assets/mobile/jquery_1.11.0.min.js"><\/script>');
+            </script>
             <script src="/scripts/scripts.js"></script>
         </head>
         <body>

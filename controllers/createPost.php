@@ -2,14 +2,40 @@
 session_start();
 require_once("../settings.php");
 require_once("../models/postmodel.php");
+
 if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+    include_once("helpers/naming_helpers.php");
+    include_once("helpers/picture_helpers.php");
+
+    $name = NamingHelpers::remove_quotes($_POST['title']);
+    $curdate = strtolower(date("Fy/d"));
+    $currentPicIndex = 1;
+    $author = "";
+
+    $content = json_decode($_POST['content']);
+    $text = "";
+
+    foreach ($content as $block) {
+        if (!file_exists("blocks/".$block->type."_block.php"))
+            continue;
+
+        require_once("blocks/".$block->type."_block.php");
+        $className = $block->type."Block";
+        $blockHandler = new $className($block);
+        $text .= $blockHandler->generate();
+    }
+
+    $text .= "\r\n<br><br>";
 
     $model = new PostModel();
 
-    $newPostId = $model->setData($db, $_POST['title'], $_POST['category'], $_POST['text'], $_POST['lead'],
-        $_POST['pic'], $_POST['author'], $_POST['src'], $_POST['tags']);
+    $src = $_POST['source'];
+    if ($_POST['sourceLink'] != "") $src = '<a href="'.$_POST['sourceLink'].'">'.$src.'</a>';
 
-    header("Location: /post_".$newPostId.".html");
+    $newPostId = $model->setData($db, $_POST['title'], $_POST['category'], $text, $_POST['lead'],
+        "", $_POST['author'], $src, $_POST['tags']);
+
+    print $newPostId;
 }
 else {
     header("Location: /error404");

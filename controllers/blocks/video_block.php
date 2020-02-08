@@ -13,15 +13,16 @@ class videoBlock extends Block
         $this->isVertical = $block->isVertical;
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br><br>";
-        print "\r\n<div style=\"text-align: center;\"><video src=\"".$this->link."\" controls ";
+        $result = "\r\n<br><br>";
+        $result .= "\r\n<div style=\"text-align: center;\"><video src=\"".$this->link."\" controls ";
         if ($this->isVertical) {
-            print "height=\"725\"";
+            $result .= "height=\"725\"";
         } else {
-            print "height=\"407\"";
+            $result .= "height=\"407\"";
         }
-        print "></video></div>";
+        $result .= "></video></div>";
+        return $result;
     }
 }

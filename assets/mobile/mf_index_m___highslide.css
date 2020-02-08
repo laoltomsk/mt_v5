@@ -197,54 +197,58 @@ i{color:white;background-color:gray}.highslide-move, .highslide-move
 
 .container {
     width: 900px;
+    display: block;
+    height: unset;
+    max-height: unset;
+    position: unset;
 }
 
-.part {
+.container .part {
     border: 0.1rem solid orange;
     padding: 1rem;
     margin: 1rem;
 }
 
-.block {
+.container .block {
     display: flex;
     flex-direction: row;
     border-bottom: 0.1rem dashed orange;
     margin-bottom: 0.5rem;
 }
 
-.block:last-child {
+.container .block:last-child {
     border-bottom: none;
     margin-bottom: 0;
 }
 
-.left {
+.container .left {
     flex: 1;
     padding: 0.5rem;
 }
 
-.main {
+.container .main {
     flex: 4;
     padding: 0.5rem;
 }
 
-input {
+.container input {
     width: 95%;
     max-width: 640px;
     margin: 0.2rem;
 }
 
-textarea {
+.container textarea {
     width: 95%;
     max-width: 640px;
     margin: 0.2rem;
     height: 14rem;
 }
 
-.large input, .large div {
+.container .large input, .container .large div {
     font-size: 1.5rem;
 }
 
-.preview {
+.container .preview {
     width: 95%;
     max-width: 640px;
     height: 12rem;
@@ -255,23 +259,23 @@ textarea {
     white-space: nowrap;
 }
 
-.preview img {
+.container .preview img {
     height: 10rem;
     padding-right: 0.5rem;
 }
 
-.left .add * {
+.container .left .add * {
     font-size: 0.5rem;
 }
 
-.delete {
+.container .delete {
     color: red;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
 }
 
-.flowingmenu {
+.container .flowingmenu {
     position: fixed;
     bottom: 1rem;
     left: 1rem;
@@ -281,33 +285,29 @@ textarea {
     background: white;
 }
 
-.flowingmenu button {
+.container .flowingmenu button {
     margin: 0.1rem;
     width: calc(25% - 0.45rem);
 }
 
-.flowingmenu input {
+.container .flowingmenu input {
     margin: 0.1rem;
     width: calc(100% - 0.45rem);
 }
 
-#pb-container {
+.container #pb-container {
     height: 1.5rem;
     width: 100%;
     border: 0.01rem solid orange;
 }
 
-#pb {
+.container #pb {
     height: 1.5rem;
     background-color: orange;
     width: 0%;
 }
 
-body > div:first-child {
-    display: none;
-}
-
-nav {
+.container nav {
     margin-bottom: 100px;
 }
 
@@ -317,19 +317,19 @@ nav {
         width: 100vw;
     }
 
-    .block {
+    .container .block {
         flex-direction: column;
     }
 
-    .left, .main {
+    .container .left, .container .main {
         flex: 1;
     }
 
-    input, textarea, .preview, .flowingmenu {
+    .container input, .container textarea, .container .preview, .container .flowingmenu {
         width: 100%;
     }
 
-    .flowingmenu {
+    .container .flowingmenu {
         bottom: 2rem;
         right: 1rem;
         width: calc(100% - 2rem);

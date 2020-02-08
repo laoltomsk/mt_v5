@@ -13,13 +13,11 @@ class rawBlock extends Block
         $this->isDiv = $block->isDiv;
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br><br>";
-        if ($this->isDiv) {
-            print "\r\n<div style=\"text-align: center;\">" . $this->content . "</div>";
-        } else {
-            print "\r\n".$this->content;
-        }
+        if ($this->isDiv)
+            return "\r\n<br><br>\r\n<div style=\"text-align: center;\">" . $this->content . "</div>";
+
+        return "\r\n<br><br>\r\n".$this->content;
     }
 }

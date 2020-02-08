@@ -23,7 +23,7 @@ if ($_GET['category'] === "news") {
     $_GET['category'] = "";
 }
 
-$data['news'] = $model->getData($db, $_GET['category'], $_GET['tag'], infinity, $_GET['page'] * newsOnPage);
+$data['news'] = $model->getData($db, $_GET['category'], $_GET['tag'], infinity, ($_GET['page'] ?? 0) * newsOnPage);
 $data['category'] = $_GET['category'];
 $data['tag'] = $_GET['tag'];
 $data['ads'] = $ads->getData($db);

@@ -7,12 +7,13 @@ class yandexBlock extends Block
     {
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br><br>";
-        print "\r\n<div id=\"div_yandex_direct\"></div>";
-        print "\r\n<ul><script type=\"text/javascript\"><!--";
-        print "\r\nloadDynamicContent_Direct();";
-        print "\r\n//--></script></ul>";
+        $result = "\r\n<br><br>";
+        $result .= "\r\n<div id=\"div_yandex_direct\"></div>";
+        $result .= "\r\n<ul><script type=\"text/javascript\"><!--";
+        $result .= "\r\nloadDynamicContent_Direct();";
+        $result .= "\r\n//--></script></ul>";
+        return $result;
     }
 }

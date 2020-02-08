@@ -10,9 +10,10 @@ class h2Block extends Block
         $this->content = $block->content;
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br><br>";
-        print "\r\n<h2 class=\"subhead_dTable_v2\">".$this->content."</h2>";
+        $result =  "\r\n<br><br>";
+        $result .= "\r\n<h2 class=\"subhead_dTable_v2\">".$this->content."</h2>";
+        return $result;
     }
 }

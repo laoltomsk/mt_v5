@@ -10,9 +10,10 @@ class paragraphBlock extends Block
         $this->content = $block->content;
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br><br>";
-        print "\r\n<p>".$this->content."</p>";
+        $result = "\r\n<br><br>";
+        $result .= "\r\n<p>".$this->content."</p>";
+        return $result;
     }
 }

@@ -10,11 +10,12 @@ class linkBlock extends Block
         $this->content = $block->content;
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br>";
-        print "\r\n<div style=\"text-align: center; font-size: 115%;\"><b>";
-        print "\r\n".$this->content;
-        print "\r\n"."</b></div>";
+        $result = "\r\n<br>";
+        $result .= "\r\n<div style=\"text-align: center; font-size: 115%;\"><b>";
+        $result .= "\r\n".$this->content;
+        $result .= "\r\n"."</b></div>";
+        return $result;
     }
 }

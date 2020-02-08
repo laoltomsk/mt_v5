@@ -247,6 +247,7 @@ header {
 
   .container {
     .part {
+      @extend %rounded;
       border: 0.1rem solid $mtblue;
       padding: 1rem;
       margin: 1rem;
@@ -279,6 +280,10 @@ header {
         max-width: 640px;
         margin: 0.2rem;
         height: 14rem;
+      }
+
+      .smallTextarea {
+        height: 5rem;
       }
 
       .large {
@@ -328,6 +333,10 @@ header {
           height: 1.5rem;
           background-color: $mtblue;
           width: 0%;
+        }
+
+        .failed {
+          background-color: $mtred;
         }
       }
     }

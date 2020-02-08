@@ -13,10 +13,11 @@ class redbuttonBlock extends Block
         $this->text = $block->text;
     }
 
-    public function printCode()
+    public function generate()
     {
-        print "\r\n<br>";
-        print "\r\n<div style=\"text-align: center; font-size: 115%; margin: auto; width: fit-content; padding: 0.7rem; background-color: #b80000; border-radius: 0.7rem; letter-spacing: 0.1rem;\">";
-        print "<a style=\"color:white\" href=\"".$this->link."\">".$this->text."</a></div>";
+        $result = "\r\n<br>";
+        $result .= "\r\n<div style=\"text-align: center; font-size: 115%; margin: auto; width: fit-content; padding: 0.7rem; background-color: #b80000; border-radius: 0.7rem; letter-spacing: 0.1rem;\">";
+        $result .= "<a style=\"color:white\" href=\"".$this->link."\">".$this->text."</a></div>";
+        return $result;
     }
 }
