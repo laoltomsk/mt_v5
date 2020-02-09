@@ -269,7 +269,7 @@ header {
         padding: 0.5rem;
       }
 
-      input {
+      input, select {
         width: 95%;
         max-width: 640px;
         margin: 0.2rem;
@@ -332,12 +332,20 @@ header {
         #pb {
           height: 1.5rem;
           background-color: $mtblue;
-          width: 0%;
+          width: 0;
         }
+      }
 
-        .failed {
-          background-color: $mtred;
-        }
+      #linkToCreatedPost {
+        display: none;
+        @extend %rounded;
+        width: 100%;
+        margin: 20px 0;
+        background-color: $mtblue;
+        color: $mtwhite;
+        height: 50px;
+        line-height: 50px;
+        border: none;
       }
     }
   }

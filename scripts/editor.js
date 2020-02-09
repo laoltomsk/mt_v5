@@ -3,6 +3,7 @@ let currentBlockIndex = 0;
 let currentlyEditingBlock;
 let queriesNumber;
 let successfulQueriesNumber;
+let postId;
 
 $(document).ready(function() {
     $("#content .block").each(function(i, v) {
@@ -77,14 +78,13 @@ function sendQueryToUploadPic(v, i) {
     queriesNumber++;
     let formPhoto = new FormData();
     formPhoto.append("name", $("#headline input").val());
-    formPhoto.append("pwd", $("#ftp").val());
     formPhoto.append("id", $(v).attr("id"));
     formPhoto.append("colnum", $(v).find(".colnum").val());
     formPhoto.append("saveNames", $(v).find(".notrename").prop("checked"));
     formPhoto.append("picnum", i);
     formPhoto.append("pic", $(v).find("[type='file']")[0].files[i]);
     $.ajax({
-        url: "uploadpic.php",
+        url: "/controllers/uploadImage.php",
         data: formPhoto,
         type: "POST",
         processData: false,
@@ -133,7 +133,7 @@ sendFormData = function() {
                } else {
                    block.files = [];
                    for (let i = 0; i < $(formBlock).find("[type='file']")[0].files.length; i++) {
-                       //sendQueryToUploadPic(formBlock, i);
+                       sendQueryToUploadPic(formBlock, i);
                        block.files[i] = $(formBlock).find("[type='file']")[0].files[i].name;
                    }
                }
@@ -168,12 +168,8 @@ sendFormData = function() {
         processData: false,
         contentType: false,
         success: function(data) {
+            postId = data;
             updateProgressBar();
-            $("#result").css("display", "block");
-            $("#result textarea").val(data)
-        },
-        error: function(data) {
-            alertFailure(data);
         }
     })
 };
@@ -209,8 +205,11 @@ updateProgressBar = function() {
         progressBar.style.width = "0";
 
     progressBar.style.width = (successfulQueriesNumber*100/queriesNumber)+"%";
+
+    if (successfulQueriesNumber === queriesNumber) showLink();
 };
 
-alertFailure = function() {
-    $("#pb").addClass("failed");
+showLink = function() {
+    $("#linkToCreatedPost").attr("href", "/post_"+postId+".html");
+    $("#linkToCreatedPost").css("display", "block");
 };

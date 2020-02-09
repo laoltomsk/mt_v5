@@ -119,18 +119,31 @@ class PostCreateView extends View {
             </div>
 
             <div class="part" id="submit">
-                <input id="author" placeholder="Подпись автора"><br>
-                <input id="source" placeholder="По материалам... (только если нужно)"><br>
-                <input id="sourceLinkg" placeholder="Ссылка на источник (только если нужна)"><br>
-                <input id="tags" placeholder="Тэги (через запятую)"><br>
-                <select id="category">
-                    <option value="news">Новости</option>
-                    <option value="reviews">Обзоры</option>
-                    <option value="games">Игры</option>
-                    <option value="blog">Статьи</option>
-                </select><br>
-                <input type="button" value="Отправить" onclick="sendFormData()"><br>
-                <div id="pb-container"><div id="pb"></div></div>
+                <div class="block">
+                    <div class="left">
+                        Дополнительно:
+                    </div>
+                    <div class="main">
+                        <input id="author" placeholder="Подпись автора"><br>
+                        <input id="source" placeholder="По материалам... (только если нужно)"><br>
+                        <input id="sourceLink" placeholder="Ссылка на источник (только если нужна)"><br>
+                        <input id="tags" placeholder="Тэги (через запятую)"><br>
+                        <select id="category">
+                            <option value="news">Новости</option>
+                            <option value="reviews">Обзоры</option>
+                            <option value="games">Игры</option>
+                            <option value="blog">Статьи</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <input type="button" value="Отправить" onclick="sendFormData()" class="left"><br>
+                    <div class="main">
+                        <div id="pb-container"><div id="pb"></div></div>
+                        <a id="linkToCreatedPost">Перейти к посту</a>
+                    </div>
+                </div>
             </div>
         </div>
 
