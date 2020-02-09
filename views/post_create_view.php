@@ -95,8 +95,7 @@ class PostCreateView extends View {
                     <div class="left">Произвольный код:</div>
                     <div class="main">
                         <textarea placeholder="Блок кода"></textarea><br>
-                        <input type="checkbox" style="width: 1rem" class="isDiv" name="orient">Обернуть в div<br>
-                        <input type="checkbox" style="width: 1rem" class="isPic" name="orient">Это картинка
+                        <input type="checkbox" style="width: 1rem" class="isDiv" name="orient">Обернуть в div
                     </div>
                 </div>
 

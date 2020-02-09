@@ -10,7 +10,8 @@ class PictureHelpers
     const totalImageMarginWidth = 5;
 
     static function getFileType($filename) {
-        return end(explode(".", $filename));
+        $arr = explode(".", $filename);
+        return end($arr);
     }
 
     static function getNewName($oldname, $postname, $picId, $filetype, $saveOldName) {
@@ -59,6 +60,8 @@ class PictureHelpers
     }
 
     static function pushImage($tmpname, $newname, $curdate, $keepCopy) {
+        if (!file_exists("../photo/$curdate")) mkdir("../photo/$curdate", 777, true);
+
         if ($keepCopy) {
             copy($tmpname, "../photo/$curdate/$newname");
         }
