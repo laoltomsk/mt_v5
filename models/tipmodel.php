@@ -6,7 +6,7 @@ class TipModel extends Model
     public function getData($db)
     {
         $tips = array();
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
 
             $queryResults = $db->query("SELECT * FROM `tips`");
 
@@ -33,7 +33,7 @@ class TipModel extends Model
 
     public function deleteData($db, $id = 0)
     {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             $id = $id * 1;
             $db->query("DELETE FROM `tips` WHERE `id` = $id");
         }

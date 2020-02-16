@@ -5,7 +5,7 @@ require_once("../models/newsmodel.php");
 require_once("../models/adsmodel.php");
 require_once("../views/ad_set_view.php");
 
-if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+if (checkAdmin()) {
     $view = new AdSetView();
     $newsModel = new NewsModel();
     $adsModel = new AdsModel();

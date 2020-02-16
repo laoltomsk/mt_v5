@@ -5,7 +5,7 @@ require_once("../models/postmodel.php");
 require_once("../views/post_edit_view.php");
 require_once("../models/adsmodel.php");
 
-if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+if (checkAdmin()) {
 
     $model = new PostModel();
     $view = new PostEditView();

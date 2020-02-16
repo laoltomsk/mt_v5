@@ -39,7 +39,7 @@ class PostModel extends Model {
 
     public function setData($db, $title, $category, $text, $lead, $pic, $author, $src, $tags, $id = 0)
     {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             $id = $id * 1;
 
             $title = mysqli_real_escape_string($db, $title);
@@ -108,7 +108,7 @@ class PostModel extends Model {
 
     public function deleteData($db, $id = 0)
     {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             $id = $id * 1;
 
             $queryResults = $db->query("SELECT * FROM `tb_uri` WHERE `uri` = '$id'");

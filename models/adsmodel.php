@@ -49,7 +49,7 @@ class AdsModel extends Model {
     }
 
     public function setTop3($db, $index1, $index2, $index3) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             $index1 = mysqli_real_escape_string($db, $index1);
             $index2 = mysqli_real_escape_string($db, $index2);
             $index3 = mysqli_real_escape_string($db, $index3);
@@ -64,7 +64,7 @@ class AdsModel extends Model {
     }
 
     public function addBranding($db, $id, $pic1280, $pic1440, $pic1920, $link, $pixel, $color) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             move_uploaded_file($pic1280["tmp_name"], "../photo/rek/branding/{$id}_1280.jpg");
             move_uploaded_file($pic1440["tmp_name"], "../photo/rek/branding/{$id}_1440.jpg");
             move_uploaded_file($pic1920["tmp_name"], "../photo/rek/branding/{$id}_1920.jpg");
@@ -86,7 +86,7 @@ class AdsModel extends Model {
     }
 
     public function removeBranding($db, $id) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             unlink("../photo/rek/branding/{$id}_1280.jpg");
             unlink("../photo/rek/branding/{$id}_1440.jpg");
             unlink("../photo/rek/branding/{$id}_1920.jpg");
@@ -107,7 +107,7 @@ class AdsModel extends Model {
     }
 
     public function getAllBrandings($db) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
             return $rekInfo->branding;
         }
@@ -115,7 +115,7 @@ class AdsModel extends Model {
     }
 
     public function addMobileBranding($db, $id, $pic761, $link, $pixel, $color) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             move_uploaded_file($pic761["tmp_name"], "../photo/rek/branding/{$id}_761.jpg");
 
             $newBranding = new stdClass();
@@ -135,7 +135,7 @@ class AdsModel extends Model {
     }
 
     public function removeMobileBranding($db, $id) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             unlink("../photo/rek/branding/{$id}_761.jpg");
 
             $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
@@ -154,7 +154,7 @@ class AdsModel extends Model {
     }
 
     public function getAllMobileBrandings($db) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
             return $rekInfo->mobileBranding;
         }
@@ -162,7 +162,7 @@ class AdsModel extends Model {
     }
 
     public function addRightBanner($db, $id, $pic260, $link, $pixel) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             move_uploaded_file($pic260["tmp_name"], "../photo/rek/banner/{$id}_right.jpg");
 
             $newBanner = new stdClass();
@@ -181,7 +181,7 @@ class AdsModel extends Model {
     }
 
     public function removeRightBanner($db, $id) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             unlink("../photo/rek/banner/{$id}_right.jpg");
 
             $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
@@ -200,7 +200,7 @@ class AdsModel extends Model {
     }
 
     public function getAllRightBanners($db) {
-        if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+        if (checkAdmin()) {
             $rekInfo = json_decode($db->query("SELECT * FROM `ads`")->fetch_array()['json']);
             return $rekInfo->rightBanners;
         }

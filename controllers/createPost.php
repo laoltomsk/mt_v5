@@ -3,7 +3,7 @@ session_start();
 require_once("../settings.php");
 require_once("../models/postmodel.php");
 
-if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+if (checkAdmin()) {
     include_once("helpers/naming_helpers.php");
     include_once("helpers/picture_helpers.php");
 

@@ -5,7 +5,7 @@ require_once("../models/tipmodel.php");
 require_once("../views/tips_view.php");
 require_once("../models/adsmodel.php");
 
-if ($_SESSION['user'] === 'mtnews' && $_SESSION['ip'] === $_SERVER['REMOTE_ADDR']) {
+if (checkAdmin()) {
 
     $model = new TipModel();
     $view = new TipsView();
