@@ -114,6 +114,12 @@ class MobileTemplate extends Template {
                         <li><a class="tw" rel="nofollow" target="blank_" href="https://twitter.com/mobiltelefon_ru"><img src="/assets/mobile/e.gif" class="nogalleryimg" alt="Следить в Twitter" title="Следить в Twitter">Twitter</a></li>
                         <li><a class="fb" rel="nofollow" target="blank_" href="https://www.facebook.com/Mobiltelefon.ru"><img src="/assets/mobile/e.gif" class="nogalleryimg" alt="Подписаться на Facebook" title="Подписаться на Facebook">Facebook</a></li>
                         <li><a class="ins" rel="nofollow" target="blank_" href="https://instagram.com/mobiltelefonru"><img src="/assets/mobile/e.gif" class="nogalleryimg" alt="Мы в Instagram" title="Мы в Instagram">Instagram</a></li>
+                        <?php if (checkAdmin()) { ?>
+                            <li><a href="/postnew.html"><img src="/assets/mobile/e.gif" class="nogalleryimg">Добавить пост</a></li>
+                            <li><a href="/tipview.html"><img src="/assets/mobile/e.gif" class="nogalleryimg">Присланные материалы</a></li>
+                            <li><a href="/setads.html"><img src="/assets/mobile/e.gif" class="nogalleryimg">Настройка рекламы</a></li>
+                            <li><a href="/logout.html"><img src="/assets/mobile/e.gif" class="nogalleryimg">Выход</a></li>
+                        <?php } ?>
                         <li><a rel="nofollow" href="#maincontent">пропустить</a></li>
                     </ul>
                     <p id="footer_nav"><a rel="nofollow" href="/google-search.html?cx=partner-pub-6942085025091392:8495246713&cof=FORID%3A11&ie=windows-1251&q=&sa=%CF%EE%E8%F1%EA"><img src="/assets/mobile/e.gif" class="nogalleryimg" alt="Поиск" title="Поиск">Поиск&nbsp;</a></p>

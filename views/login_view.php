@@ -6,11 +6,19 @@ class LoginView extends View {
         $this->checkMobile();
 
         $this->template->getHeader("Mobiltelefon.ru: вход", siteDescription, '', siteLogo, false, $data['ads']);
-        ?><div id="news">
+        ?>
+        <div class="container" id="editor">
             <form action="/controllers/login.php" method="POST">
-                <input name="login"><br>
-                <input name="password" type="password"><br>
-                <input type="submit">
+                <div class="part">
+                    <div class="block">
+                        <div class="left">Вход на сайт</div>
+                        <div class="main">
+                            <input placeholder="Логин" name="login"><br>
+                            <input placeholder="Пароль" type="password" name="password"><br>
+                            <input type="submit" value="Войти">
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <?php

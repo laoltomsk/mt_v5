@@ -22,6 +22,10 @@ class PostView extends View {
                 };
             } ?>
             </p>
+            <?php if (checkAdmin()) { ?>
+                <a href="/postdelete_<?php echo $data['post']['id'] ?>.html">Удалить</a><br>
+                <a href="/postedit_<?php echo $data['post']['id'] ?>.html">Редактировать</a>
+            <?php } ?>
         <script>
             AddView(<?php echo $data['post']['id'] ?>);
         </script>

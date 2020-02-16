@@ -92,6 +92,12 @@ class PCTemplate extends Template {
         <div id="main-wrapper">
             <header>
                 <div class="social_btns">
+                    <?php if (checkAdmin()) { ?>
+                        <span class="social_btn"><a href="/postnew.html">+</a></span>
+                        <span class="social_btn"><a href="/tipview.html">tips</a></span>
+                        <span class="social_btn"><a href="/setads.html">ad</a></span>
+                        <span class="social_btn"><a href="/logout.html">out</a></span>
+                    <?php } ?>
                     <span class="social_btn" id="youtube_btn">YT</span>
                     <span class="social_btn" id="telegram_btn">TG</span>
                     <span class="social_btn" id="vk_btn">VK</span>
